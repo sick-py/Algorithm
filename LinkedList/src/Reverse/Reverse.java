@@ -60,7 +60,7 @@ public class Reverse {
     /**
      * recursive
      * Here’s how recursive reversal works:
-     *
+     * still draw the pic
      * If we have a reversed linked list of all the nodes to the left of the current node, and we know the last node of the reversed linked list, then inserting the current node as the second to last node creates the new reversed linked list.
      * Then return the head of the new linked list.
      * The trick here is that we don’t explicitly need to track the last node.
