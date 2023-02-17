@@ -1,3 +1,5 @@
+package Sorting;
+
 public class QuickSort {
     /**
      * Select a pivot element from the array to divide it into two parts.
