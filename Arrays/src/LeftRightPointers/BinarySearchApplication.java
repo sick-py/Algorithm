@@ -55,7 +55,7 @@ public class BinarySearchApplication {
      *
      * If the rate of eating bananas is x roots /hour, it takes f(x)hours to eat all the bananas.
      * */
-    int f(int[] piles, int x) {
+    static int f(int[] piles, int x) {
         int hours = 0;
         for (int i = 0; i < piles.length; i++) {
             hours += piles[i] / x;
@@ -132,6 +132,71 @@ public class BinarySearchApplication {
             }
         }
         return left;
+    }
+
+    public boolean searchMatrix(int[][] matrix, int target) {
+        int row = matrix.length, col = matrix[0].length;
+        int left = 0, right = row * col - 1;
+        while (left <= right) {
+            int mid = left + (right - left) / 2;
+            if (matrix[mid / col][mid % col] == target) {
+                return true;
+            } else if (matrix[mid / col][mid % col] > target) {
+                right = mid - 1;
+            } else {
+                left = mid + 1;
+            }
+        }
+        return false;
+    }
+
+    class review {
+        //875
+        public int minEatingSpeed(int[] piles, int h) {
+            int max = -1;
+            for (int i : piles) {
+                max = Math.max(i, max);
+            }
+
+            int left = 1, right = max;
+            while (left <= right) {
+                int mid = left + (right - left) / 2;
+                if (f(piles, mid) == h) {
+                    right = mid - 1;
+                } else if (f(piles, mid) < h) {
+                    right = mid - 1;
+                } else {
+                    left = mid + 1;
+                }
+            }
+            return left;
+
+        }
+
+        int f(int[] piles, int k) {
+            int h = 0;
+            for (int i = 0; i < piles.length; i++) {
+                h += piles[i] / k;
+                if (piles[i] % k > 0) {
+                    h++;
+                }
+            }
+            return h;
+        }
+    }
+
+
+    public static void main(String[] args) {
+
+        for (int i = 0; i < 12; i++) {
+            int[] piles = {3,6,7,11};
+            int[] piles2 = {3,6,7,11};
+            System.out.printf("for f3 : %d\n", f(piles, i));
+            System.out.printf("for f : %d\n", f(piles2, i));
+            System.out.printf("**********");
+        }
+
+
     }
 
 

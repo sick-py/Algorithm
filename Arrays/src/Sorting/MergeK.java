@@ -12,7 +12,29 @@ public class MergeK {
      }
 
     public ListNode mergeKLists(ListNode[] lists) {
-        PriorityQueue<ListNode> heap = new PriorityQueue<>()
+          if (lists.length == 0) {
+              return null;
+          }
+        //minHeap
+          PriorityQueue<ListNode> heap = new PriorityQueue<>(lists.length, (a, b)->(a.val - b.val));
+          ListNode dummy = new ListNode(-1), cur = dummy;
+
+          for (ListNode n : lists) {
+              if (n != null) {
+                  heap.add(n);
+              }
+          }
+
+          while (!heap.isEmpty()) {
+              ListNode node = heap.poll();
+              cur.next = node;
+              if (node.next != null) {
+                  heap.add(node.next);
+              }
+              cur = cur.next;
+          }
+          cur.next = null;
+          return dummy.next;
     }
 
 }

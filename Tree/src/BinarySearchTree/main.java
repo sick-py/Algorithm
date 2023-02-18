@@ -2,11 +2,13 @@ package BinarySearchTree;
 
 import Main.TreeNode;
 
+import java.util.*;
+
 public class main {
     /**
      * First of all, the characteristics of BST should be familiar to everyone:
      * 1. For each node of BST, the value of the left subtree node is smaller than the value of root, and the value of the right subtree node is larger than the value of root.
-     * 2. For each node of BST node, its left subtree and right subtree are both BST.
+     * 2. For each node of BST, its left subtree and right subtree are both BST.
      *
      * the inorder traversal results of BST are ordered (ascending) .
      *
@@ -75,6 +77,7 @@ public class main {
      * */
     TreeNode delete(TreeNode root, int val) {
         if (root == null) return null;
+
         if (root.data == val) {
             //case 0, 1
             if (root.left == null) return root.right;
@@ -99,6 +102,161 @@ public class main {
             root = root.left;
         }
         return root;
+    }
+
+    class review{
+        public class TreeNode {
+      int val;
+      TreeNode left;
+     TreeNode right;
+      TreeNode() {}
+      TreeNode(int val) { this.val = val; }
+      TreeNode(int val, TreeNode left, TreeNode right) {
+          this.val = val;
+          this.left = left;
+          this.right = right;
+            }
+        }
+
+        public TreeNode insertIntoBST(TreeNode root, int val) {
+            if (root == null) return new TreeNode(val);
+            if (root.val > val) {
+                 root.left = insertIntoBST(root.left, val);//pay attention to
+            }
+            else {
+                 root.right = insertIntoBST(root.right, val);
+            }
+
+            return root;//pay attention to
+        }
+
+        public TreeNode deleteNode(TreeNode root, int key) {
+            if (root == null) {
+                return null;
+            }
+
+            if (root.val > key) {
+                root.left = deleteNode(root.left, key);
+            } else if (root.val < key) {
+                root.right = deleteNode(root.right, key);
+            } else if (root.val == key){//find the node
+                if (root.left == null) {
+                    return root.right;
+                } else if (root.right == null) {
+                    return root.left;
+                } else {
+                    TreeNode min = root;
+                    while (min.left != null) {
+                        min = min.left;
+                    }
+
+                    root.right = deleteNode(root.right, min.val); //pay attention here, you need to do this first
+                    min.left = root.left;
+                    min.right = root.right;
+                    root = min;
+                }
+            }
+
+            return root;
+        }
+
+        List<Integer> res = new LinkedList<>();
+        public List<Integer> inorderTraversal(TreeNode root) {
+            inOrder(root);
+            return res;
+        }
+
+        private void inOrder(TreeNode root) {
+            if (root == null) {
+                return;
+            }
+
+            inOrder(root.left);
+            res.add(root.val);
+            inOrder(root.right);
+        }
+
+        int resK = 0;
+        int rank = 0;
+        public int kthSmallest(TreeNode root, int k) {
+            traverse(root, k);
+            return resK;
+        }
+
+        private void traverse(TreeNode root, int k) {
+            if (root == null) {
+                return;
+            }
+
+            traverse(root.left, k);
+            rank++;
+            if (rank == k) {
+                resK = root.val;
+            }
+            traverse(root.right, k);
+        }
+
+        public List<List<Integer>> levelOrder(TreeNode root) {
+
+
+            List<List<Integer>> res = new LinkedList<>();
+            if (root == null) {
+                return res;
+            }
+            Queue<TreeNode> q = new ArrayDeque<>();
+            q.add(root);
+
+            while (!q.isEmpty()) {
+                int size = q.size();
+                List<Integer> r = new LinkedList<>();
+                for (int i = 0; i < size; i++) {
+                    TreeNode node = q.poll();
+                    r.add(node.val);
+                    if (node.left != null) {
+                        q.add(node.left);
+                    }
+                    if (node.right != null) {
+                        q.add(node.right);
+                    }
+                }
+                res.add(r);
+            }
+            return res;
+        }
+
+        public List<Integer> rightSideView(TreeNode root) {
+
+            List<Integer> res = new LinkedList<>();
+            if (root == null) {
+                return res;
+            }
+            Queue<TreeNode> q = new ArrayDeque<>();
+            q.add(root);
+
+            while (!q.isEmpty()) {
+                int size = q.size();
+                for (int i = 0; i < size - 1; i++) {
+                    TreeNode node = q.poll();
+                    if (node.left != null) {
+                        q.add(node.left);
+                    }
+                    if (node.right != null) {
+                        q.add(node.right);
+                    }
+                }
+                TreeNode node = q.poll();
+                res.add(node.val);
+                if (node.left != null) {
+                    q.add(node.left);
+                }
+                if (node.right != null) {
+                    q.add(node.right);
+                }
+            }
+            return res;
+        }
+
+
     }
 
 

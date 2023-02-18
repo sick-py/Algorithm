@@ -11,7 +11,7 @@ public class LargestBinaryTree1 {
      * the largest binary tree is the root is the biggest number, the left subtree is made of the numbers from left part(take the biggest number as the pivot,
      * Each binary tree node can be regarded as the root node of a subtree. For the root node, the first thing to do is of course to find a way to construct itself first, and then find a way to construct its own left and right subtrees.
      *
-     * Therefore, we need to traverse the array to find the maximum value maxVal, so as to rootmake , and then maxVal recursively build the left and right arrays as rootthe left and right subtrees of .
+     * Therefore, we need to traverse the array to find the maximum value maxVal, so as to rootmake , and then maxVal recursively build the left and right arrays as root the left and right subtrees of .
      *
      * According to the example given in the topic, the input array is [3,2,1,6,0,5], for the root node of the whole tree, it is actually doing this:
      *

@@ -47,4 +47,47 @@ public class PreOrderInOrder {
 
         return root;
     }
+
+    class review{
+        public class TreeNode {
+      int val;
+      TreeNode left;
+      TreeNode right;
+      TreeNode() {}
+      TreeNode(int val) { this.val = val; }
+      TreeNode(int val, TreeNode left, TreeNode right) {
+          this.val = val;
+          this.left = left;
+          this.right = right;
+      }
+  }
+        HashMap<Integer, Integer> valueToIndex;
+        public TreeNode buildTree(int[] preorder, int[] inorder) {
+            valueToIndex = new HashMap<>();
+            for (int i = 0; i < inorder.length; i++) {
+                valueToIndex.put(inorder[i], i);
+            }
+            return buildR(preorder, 0, preorder.length - 1,
+                    inorder, 0, inorder.length - 1);
+        }
+
+        private TreeNode buildR(int[] preorder, int preStart, int preEnd, int[] inorder, int inStart, int inEnd) {
+            if (preStart > preEnd) {
+                return null;
+            }
+            int rootval = preorder[preStart];
+            int index = valueToIndex.get(rootval);
+            TreeNode root = new TreeNode(rootval);
+            root.left = buildR(preorder, preStart + 1, preStart + index - inStart,
+                    inorder, inStart, index - 1);
+            root.right = buildR(preorder, preStart + index - inStart + 1, preEnd,
+                    inorder, index + 1, inEnd);
+            return root;
+        }
+
+        public boolean hasPathSum(TreeNode root, int targetSum) {
+
+        }
+
+    }
 }

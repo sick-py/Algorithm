@@ -53,4 +53,23 @@ public class SortColors {
             System.out.println("----------------------------------------------------------------");
         }
     }
+
+    class review{
+        public void sortColors(int[] nums) {
+            int left = 0, right = nums.length - 1, cur = 0, temp = 0;
+            while (cur <= right) { //pay attention to here
+                if (nums[cur] == 0) {
+                    temp = nums[left];
+                    nums[left++] = 0;
+                    nums[cur++] = temp;
+                } else if (nums[cur] == 2) {
+                    temp = nums[right];
+                    nums[right--] = 2;
+                    nums[cur] = temp; //here we don't check it
+                } else {
+                    cur++;
+                }
+            }
+        }
+    }
 }
