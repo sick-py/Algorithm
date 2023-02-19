@@ -103,4 +103,35 @@ public class Subsets {
             trackSum -= nums[i];
         }
     }
+
+    class review {
+        List<List<Integer>> res = new LinkedList<>();
+        LinkedList<Integer> track = new LinkedList<>();
+        int trackSum = 0;
+        public List<List<Integer>> combinationSum(int[] candidates, int target) {
+            backtrack0(candidates, target, 0);
+            return res;
+        }
+
+        private void backtrack0(int[] candidates, int target, int start) {
+            if (trackSum == target) {
+                res.add(new LinkedList<>(track));
+                return;
+            }
+
+            if (trackSum > target) {
+                return;
+            }
+
+            for (int i = start; i < candidates.length; i++) {
+                trackSum += candidates[i];
+                track.addLast(candidates[i]);
+                backtrack0(candidates, target, i);
+                track.removeLast();
+                trackSum -= candidates[i];
+            }
+        }
+
+
+    }
 }

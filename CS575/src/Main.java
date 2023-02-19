@@ -2,6 +2,8 @@ import jdk.nashorn.internal.ir.SplitReturn;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.PrintWriter;
+import java.io.UnsupportedEncodingException;
 import java.util.HashMap;
 import java.util.Scanner;
 
@@ -15,7 +17,7 @@ public class Main {
             price = Integer.parseInt(b);
         }
     }
-    public static void main(String[] args) throws FileNotFoundException {
+    public static void main(String[] args) throws FileNotFoundException, UnsupportedEncodingException {
         String marketFileName = "", priceFileName = "";
 
         for (int i = 0; i < args.length; i++) {
@@ -37,6 +39,8 @@ public class Main {
             //markets[i] = new Card(line[0], line[1]);
         }
 
+        PrintWriter writer = new PrintWriter("output.txt", "UTF-8");
+
         while (priceFile.hasNextLine()) {
             String[] l = priceFile.nextLine().split(" ");
             n = Integer.parseInt(l[0]);
@@ -46,19 +50,20 @@ public class Main {
                 String[] line = priceFile.nextLine().split(" ");
                 prices[i] = new Card(line[0], line[1]);
             }
-            double time = System.currentTimeMillis();
+            long time = System.nanoTime();
             int res = computeMaxProfit(markets, prices, w);
-            time = (System.currentTimeMillis() - time);
-            System.out.printf("%d %d %d %.2f\n", n, res, cardNum, time);
+            time = (System.nanoTime() - time);
+            double value = (double) time / 1_000_000_000.0;
+            writer.printf("%d %d %d %.6f", n, res, cardNum, value);
             for (int bit = 0; bit < n; bit++) {
                 if ((SET & (1 <<bit)) != 0) {
                     //the bit th bit is 1
-                    System.out.println(prices[bit].name);
+                    writer.println(prices[bit].name);
                 }
             }
         }
 
-
+        writer.close();
     }
 
     static int cardNum;
