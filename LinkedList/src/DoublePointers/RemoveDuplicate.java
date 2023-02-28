@@ -1,6 +1,6 @@
 package DoublePointers;
 
-import Base.LinkedListNode;
+import Base.ListNode;
 
 import java.util.HashSet;
 
@@ -19,20 +19,20 @@ public class RemoveDuplicate {
      *  )
      *  and does not require any extra space.
      * */
-    public static LinkedListNode removeDuplicate(LinkedListNode head) {
+    public static ListNode removeDuplicate(ListNode head) {
         if (head == null) {
             return head;
         }
 
         HashSet<Integer> dupSet = new HashSet<>();
-        dupSet.add(head.data);
-        LinkedListNode curr = head;
+        dupSet.add(head.val);
+        ListNode curr = head;
 
         while (curr.next != null) {
-            if (dupSet.contains(curr.next.data)) {
+            if (dupSet.contains(curr.next.val)) {
                 curr.next = curr.next.next;
             } else {
-                dupSet.add(curr.next.data);
+                dupSet.add(curr.next.val);
                 curr = curr.next;
             }
         }

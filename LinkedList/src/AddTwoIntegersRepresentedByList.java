@@ -1,4 +1,4 @@
-import Base.LinkedListNode;
+import Base.ListNode;
 
 public class AddTwoIntegersRepresentedByList {
     /**We are given the head pointers of two linked lists, each linked list represents an integer number (each node is a digit). Add them and return the resulting linked list (i.e., sum).
@@ -16,17 +16,17 @@ public class AddTwoIntegersRepresentedByList {
      * Now, let’s walk through the solution step by step using this animation:
      *
      * */
-    LinkedListNode addIntegers(LinkedListNode int1, LinkedListNode int2) {
-        LinkedListNode res = null, last = null;
+    ListNode addIntegers(ListNode int1, ListNode int2) {
+        ListNode res = null, last = null;
         int carry = 0;
 
         while (int1 != null || int2 != null || carry > 0) {
-            int first = (int1 == null ? 0 : int1.data);
+            int first = (int1 == null ? 0 : int1.val);
 
-            int second = (int2 == null ? 0 : int2.data);
+            int second = (int2 == null ? 0 : int2.val);
 
             int sum = first + second + carry;
-            LinkedListNode pNew = new LinkedListNode(sum % 10);
+            ListNode pNew = new ListNode(sum % 10);
             carry = sum / 10;
 
             if (res == null) {

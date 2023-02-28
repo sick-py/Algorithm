@@ -1,4 +1,4 @@
-import Base.LinkedListNode;
+import Base.ListNode;
 
 public class ReverseAlternateKNodes {
     /**
@@ -16,21 +16,21 @@ public class ReverseAlternateKNodes {
      * If it is the first sub-list of size k, then its head (the current head) is the head of the output linked list(successfully reversed), which means we point reversed to the current head of the first sub-list.
      * If it is the second or higher sub-list, we connect the tail of the previous sub-list to the head of the current sub-list. In other words, we update the next pointer of the tail of the previous sub-list with the head pointer of the current sub-list to join the two sub-lists.
      * */
-    LinkedListNode reverse(LinkedListNode head, int k) {
+    ListNode reverse(ListNode head, int k) {
         if (k <= 1 || head == null) {
             return head;
         }
 
-        LinkedListNode reversed = null; //the head of the output list
-        LinkedListNode prevTail = null; //the tail of the already processed Linked List
+        ListNode reversed = null; //the head of the output list
+        ListNode prevTail = null; //the tail of the already processed Linked List
 
         //loop for reverse
         while (head != null && k > 0) {
-            LinkedListNode currentHead = null, currentTail = head;
+            ListNode currentHead = null, currentTail = head;
             int n = k; //local variable to run for each sub-list
 
             while (head != null && n > 0) {
-                LinkedListNode temp = head.next;
+                ListNode temp = head.next;
                 head.next = currentHead;
                 currentHead = head;
                 head = temp;

@@ -1,18 +1,18 @@
 package Circle;
 
-import Base.LinkedListNode;
+import Base.ListNode;
 
 public class DetermineCircle {
     /**
      *Judging whether the linked list contains a circle is a classic problem, and the solution is to use the fast and slow pointer:
      * Every time the slow slowhand advances one step, the fast hand fast advances two steps.If fast finally encounters a null pointer, it means that there is no ring in the linked list; if fast finally slowmeets with , it must be fastmore than a slowcircle , indicating that there is a circle in the linked list.
      * */
-    boolean circle(LinkedListNode root) {
+    boolean circle(ListNode root) {
         if (root == null) {
             return false;
         }
 
-        LinkedListNode slow = root, fast = root;
+        ListNode slow = root, fast = root;
         while (slow != null && fast != null && fast.next != null) {
             slow = slow.next;
             fast = fast.next.next;
@@ -31,8 +31,8 @@ public class DetermineCircle {
      *  (slow) k + m = 2k(fast), so k = m, m is the distance between the meet point and the start circle point
      *
      * */
-    LinkedListNode detectCycle(LinkedListNode head) {
-        LinkedListNode fast, slow;
+    ListNode detectCycle(ListNode head) {
+        ListNode fast, slow;
         fast = slow = head;
         while (fast != null && fast.next != null) {
             fast = fast.next.next;
@@ -52,6 +52,40 @@ public class DetermineCircle {
             slow = slow.next;
         }
         return slow;
+    }
+
+    class review {
+        public boolean hasCycle(ListNode head) {
+            ListNode fast = head, slow = head;
+            while (fast != null && fast.next != null) {
+                fast = fast.next.next;
+                slow = slow.next;
+                if (slow == fast) {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        public ListNode detectCycle(ListNode head) {
+            if (!hasCycle(head)) {
+                return null;
+            }
+            ListNode slow = head, fast = head;
+            while (fast != null && fast.next != null) {
+                fast = fast.next.next;
+                slow = slow.next;
+                if (slow == fast) {
+                    break;
+                }
+            }
+            fast = head;
+            while (fast != slow) {
+                fast = fast.next;
+                slow = slow.next;
+            }
+            return slow;
+        }
     }
 
 }

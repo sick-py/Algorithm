@@ -1,6 +1,6 @@
 package DoublePointers;
 
-import Base.LinkedListNode;
+import Base.ListNode;
 
 import java.util.PriorityQueue;
 
@@ -11,23 +11,23 @@ public class MergeK {
      * all linked list nodes will be added and popped up , so the overall time complexity of the algorithm is O(N * logK)
      * */
 
-    LinkedListNode merge(LinkedListNode[] lists) {
+    ListNode merge(ListNode[] lists) {
         if (lists.length == 0) {
             return null;
         }
 
-        LinkedListNode dummy = new LinkedListNode(-1), curr = dummy;
+        ListNode dummy = new ListNode(-1), curr = dummy;
         //minHeap
-        PriorityQueue<LinkedListNode> pq = new PriorityQueue<>(lists.length, (a, b)->(a.data - b.data));
+        PriorityQueue<ListNode> pq = new PriorityQueue<>(lists.length, (a, b)->(a.val - b.val));
 
-        for (LinkedListNode node : lists) {
+        for (ListNode node : lists) {
             if (node != null) {
                 pq.add(node);
             }
         }
 
         while (!pq.isEmpty()) {
-            LinkedListNode node = pq.poll();
+            ListNode node = pq.poll();
             curr.next = node;
             curr = curr.next;
             if (node.next != null) {

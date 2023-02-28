@@ -1,4 +1,4 @@
-import Base.LinkedListNode;
+import Base.ListNode;
 
 public class SwapNthNodeWithHead {
     /**
@@ -7,12 +7,12 @@ public class SwapNthNodeWithHead {
      * draw pic
      * */
 
-    public LinkedListNode swapN(LinkedListNode head, int n) {
+    public ListNode swapN(ListNode head, int n) {
         if (head == null || n == 1) {
             return head;
         }
 
-        LinkedListNode prev = null, cur = head, temp;
+        ListNode prev = null, cur = head, temp;
 
         while (n > 0 && cur != null) {
             prev = cur;

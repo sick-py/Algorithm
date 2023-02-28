@@ -1,6 +1,6 @@
 package DoublePointers;
 
-import Base.LinkedListNode;
+import Base.ListNode;
 
 public class MergeSortedList {
     /**
@@ -12,16 +12,16 @@ public class MergeSortedList {
      * We can also use this to separate linkedList, just divide the original linked list into two small linked lists, and merge them
      * */
 
-    public static LinkedListNode merge(LinkedListNode head1, LinkedListNode head2) {
+    public static ListNode merge(ListNode head1, ListNode head2) {
         if (head1 == null) {
             return head2;
         } else if (head2 == null) {
             return head1;
         }
 
-        LinkedListNode dummy = new LinkedListNode(-1), cur = dummy;
+        ListNode dummy = new ListNode(-1), cur = dummy;
         while (head1 != null && head2 != null) {
-            if (head1.data <= head2.data) {
+            if (head1.val <= head2.val) {
                 cur.next = head1;
                 head1 = head1.next;
             } else {

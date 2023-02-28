@@ -1,4 +1,4 @@
-import Base.LinkedListNode;
+import Base.ListNode;
 
 public class FoldListOnItself {
     /**
@@ -10,18 +10,18 @@ public class FoldListOnItself {
      *
      * Merge both halves of the linked lists alternatively.
      * */
-    void reorder(LinkedListNode head) {
+    void reorder(ListNode head) {
         if (head == null) return;
 
         //find the mid
-        LinkedListNode slow = head, fast = head;
+        ListNode slow = head, fast = head;
         while (fast != null && fast.next != null) {
             fast = fast.next.next;
             slow = slow.next;
         }
 
         //reverse
-        LinkedListNode prev = null, curr = slow, tmp = null;
+        ListNode prev = null, curr = slow, tmp = null;
         while (curr != null) {
             tmp = curr.next;
             curr.next = prev;
@@ -30,7 +30,7 @@ public class FoldListOnItself {
         }
 
         //merge
-        LinkedListNode first = head, second = prev;
+        ListNode first = head, second = prev;
         while (second.next != null) {
             //draw the pic
             tmp = first.next;

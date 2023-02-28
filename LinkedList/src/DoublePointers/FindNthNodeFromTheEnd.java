@@ -1,6 +1,6 @@
 package DoublePointers;
 
-import Base.LinkedListNode;
+import Base.ListNode;
 
 public class FindNthNodeFromTheEnd {
     /**
@@ -13,12 +13,12 @@ public class FindNthNodeFromTheEnd {
      * Now, the first pointer points to the Nth node from last. If we reach the tail and both pointers are no longer n nodes apart, that means n is larger than the size of the list, and we may return null.
      * */
 
-    public LinkedListNode nth(LinkedListNode head, int n) {
+    public ListNode nth(ListNode head, int n) {
         if (head == null) {
             return null;
         }
 
-        LinkedListNode fast = head;
+        ListNode fast = head;
         while (fast != null && n > 0) {
             fast = fast.next;
             n--;

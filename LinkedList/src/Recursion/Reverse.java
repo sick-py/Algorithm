@@ -1,6 +1,6 @@
 package Recursion;
 
-import Base.LinkedListNode;
+import Base.ListNode;
 
 public class Reverse {
     /**
@@ -21,14 +21,14 @@ public class Reverse {
      * The next pointer in the current node is already pointing to the last node in the partially reversed linked list.
      * */
 
-    LinkedListNode reverseAll(LinkedListNode head) {
+    ListNode reverseAll(ListNode head) {
         //The recursive function must have a base case, that is, this sentence:
         if (head == null || head.next == null) {
             return head;
         }
 
         //After the linked list is reversed recursively, the new head node is last, and the previous head becomes the last node. Don’t forget that the end of the linked list must point to null:
-        LinkedListNode last = reverseAll(head.next);
+        ListNode last = reverseAll(head.next);
         head.next.next = head;
         head.next = null;
         return last;
@@ -40,16 +40,16 @@ public class Reverse {
      *
      * 2. Just now we directly head.nextset to null, because the original headbecomes the last node of the entire linked list after the entire linked list is reversed. But now the headnode is not necessarily the last node after the recursive reversal, so it is necessary to record the back drive successor( n + 1the node), and head connect to after the reversal.
      * */
-    LinkedListNode successor = null;
+    ListNode successor = null;
 
-    LinkedListNode reverseN(LinkedListNode head, int n) {
+    ListNode reverseN(ListNode head, int n) {
         if (n == 1) {
             //record the n + 1 node
             successor = head.next;
             return head;
         }
 
-        LinkedListNode last = reverseN(head.next, n - 1);
+        ListNode last = reverseN(head.next, n - 1);
         head.next.next = head;
         head.next = successor;
         return last;
@@ -62,7 +62,7 @@ public class Reverse {
      *
      * Different from iterative thinking, this is recursive thinking, so we can complete the code:
      * */
-    LinkedListNode reverseBetween(LinkedListNode head, int m, int n) {
+    ListNode reverseBetween(ListNode head, int m, int n) {
         //base case
         if (m == 1) {
             return reverseN(head, n);

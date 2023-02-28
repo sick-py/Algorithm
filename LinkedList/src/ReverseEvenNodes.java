@@ -1,4 +1,4 @@
-import Base.LinkedListNode;
+import Base.ListNode;
 
 public class ReverseEvenNodes {
     /**
@@ -9,7 +9,7 @@ public class ReverseEvenNodes {
      * While extracting even nodes, we push them to the head of a new list because we need them in reverse order while merging.
      * Now that the two lists are in the correct order, it’s just a matter of merging their nodes alternately.
      * */
-    public LinkedListNode merge(LinkedListNode list1, LinkedListNode list2) {
+    public ListNode merge(ListNode list1, ListNode list2) {
         if (list1 == null) {
             return list2;
         }
@@ -18,10 +18,10 @@ public class ReverseEvenNodes {
             return list1;
         }
 
-        LinkedListNode head = list1;
+        ListNode head = list1;
 
         while (list1.next != null && list2.next != null) {
-            LinkedListNode temp = list2;
+            ListNode temp = list2;
             list2 = list2.next;
 
             temp.next = list1.next;
@@ -36,14 +36,14 @@ public class ReverseEvenNodes {
         return head;
     }
 
-    public LinkedListNode reverse(LinkedListNode head) {
+    public ListNode reverse(ListNode head) {
         if (head == null) {
             return null;
         }
 
-        LinkedListNode curr = head, listEven = new LinkedListNode(-1);
+        ListNode curr = head, listEven = new ListNode(-1);
         while (curr != null && curr.next != null) {
-            LinkedListNode even = curr.next;
+            ListNode even = curr.next;
             curr.next = even.next;
 
             even.next = listEven;

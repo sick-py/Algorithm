@@ -1,6 +1,6 @@
 package Reverse;
 
-import Base.LinkedListNode;
+import Base.ListNode;
 
 public class Reverse {
     /**
@@ -11,12 +11,12 @@ public class Reverse {
      * draw the pic
      * */
 
-    public LinkedListNode reverse(LinkedListNode head) {
+    public ListNode reverse(ListNode head) {
         if (head == null || head.next == null) {
             return head;
         }
 
-        LinkedListNode prevP = null, curP = head, nextP;
+        ListNode prevP = null, curP = head, nextP;
         while (curP != null) {
             nextP = curP.next;
             curP.next = prevP;
@@ -27,8 +27,8 @@ public class Reverse {
     }
 
     //revers [a, b), pay atttion to the interval
-    public LinkedListNode reverse(LinkedListNode a, LinkedListNode b) {
-        LinkedListNode prev = b, cur = a, next = null;
+    public ListNode reverse(ListNode a, ListNode b) {
+        ListNode prev = b, cur = a, next = null;
         while (cur != b) {
             next = cur.next;
             cur.next = prev;
@@ -42,16 +42,16 @@ public class Reverse {
      * Now we iteratively realize the function of reversing part of the linked list, and then write the reverseKGroupfunction :
      * */
 
-    LinkedListNode reverseKGroup(LinkedListNode head, int k) {
+    ListNode reverseKGroup(ListNode head, int k) {
         if (head == null) return null;
-        LinkedListNode a = head, b = head;
+        ListNode a = head, b = head;
         for (int i = 0; i < k; i++) {
             //less than k, no need to reverse
             if (b == null) return head;
             b = b.next;
         }
         //reverse the front k
-        LinkedListNode newHead = reverse(a, b);
+        ListNode newHead = reverse(a, b);
         //link the reversed one
         a.next = reverseKGroup(b, k);
         return newHead;
@@ -67,12 +67,12 @@ public class Reverse {
      * The next pointer in the current node is already pointing to the last node in the partially reversed linked list.
      * */
 
-    public static LinkedListNode reverseRecursive(LinkedListNode head) {
+    public static ListNode reverseRecursive(ListNode head) {
         if (head == null || head.next == null) {
             return head;
         }
 
-        LinkedListNode reversedList = reverseRecursive(head.next);
+        ListNode reversedList = reverseRecursive(head.next);
         head.next.next = head;
         head.next = null;
         return reversedList;

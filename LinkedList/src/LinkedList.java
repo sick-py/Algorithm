@@ -1,9 +1,9 @@
-import Base.LinkedListNode;
+import Base.ListNode;
 
 import java.util.List;
 
 public class LinkedList {
-    public LinkedListNode head;
+    public ListNode head;
 
     public LinkedList() {
         this.head = null;
@@ -11,9 +11,9 @@ public class LinkedList {
 
     public void insertAtHead(int data) {
         if (this.head == null) {
-            this.head = new LinkedListNode(data);
+            this.head = new ListNode(data);
         } else {
-            LinkedListNode newNode = new LinkedListNode(data);
+            ListNode newNode = new ListNode(data);
             newNode.next = head;
             head = newNode;
         }
@@ -21,10 +21,10 @@ public class LinkedList {
 
     public void insertAtTail(int data) {
         if (head == null) {
-            head = new LinkedListNode(data);
+            head = new ListNode(data);
         } else {
-            LinkedListNode newNode = new LinkedListNode(data);
-            LinkedListNode temp = head;
+            ListNode newNode = new ListNode(data);
+            ListNode temp = head;
             while (temp.next != null) {
                 temp = temp.next;
             }
@@ -39,10 +39,10 @@ public class LinkedList {
     }
 
     public void display() {
-        LinkedListNode temp = head;
+        ListNode temp = head;
         StringBuilder res = new StringBuilder("[");
         while (temp != null) {
-            res.insert(res.length(), temp.data);
+            res.insert(res.length(), temp.val);
             temp = temp.next;
             if (temp != null) {
                 res.insert(res.length(), ",");

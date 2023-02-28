@@ -1,6 +1,6 @@
 package DoublePointers;
 
-import Base.LinkedListNode;
+import Base.ListNode;
 
 public class Palindrome {
     /**
@@ -13,24 +13,24 @@ public class Palindrome {
      *
      *  the linked list has a recursive structure, and the tree structure is just a derivative of the linked list. Then, the linked list can actually have pre-order traversal and post-order traversal :
      * */
-    void postOrder(LinkedListNode head) {
+    void postOrder(ListNode head) {
         if (head == null) return;
         postOrder(head.next);
         //post order code
-        System.out.println(head.data);
+        System.out.println(head.val);
     }
 
-    LinkedListNode left;
-    boolean isPalindrome1(LinkedListNode head) {
+    ListNode left;
+    boolean isPalindrome1(ListNode head) {
         left = head;
         return traverse(head);
     }
 
-    private boolean traverse(LinkedListNode right) {
+    private boolean traverse(ListNode right) {
         if (right == null) return true;
         boolean res = traverse(right.next);
         //post order
-        res = res && (right.data == left.data);
+        res = res && (right.val == left.val);
         left = left.next;
         return res;
     }
@@ -49,8 +49,8 @@ public class Palindrome {
      * In this way, just add a piece of code before the function return to restore the original linked list order:
      * */
 
-    boolean isPalindrome(LinkedListNode head) {
-        LinkedListNode slow = head, fast = head, p = null;
+    boolean isPalindrome(ListNode head) {
+        ListNode slow = head, fast = head, p = null;
         while (fast != null && fast.next != null) {
             p = slow;
             fast = fast.next.next;
@@ -63,9 +63,9 @@ public class Palindrome {
         }
 
 
-        LinkedListNode left = head, q = slow, right = reverse(slow);
+        ListNode left = head, q = slow, right = reverse(slow);
         while (right != null) {
-            if (left.data != right.data) {
+            if (left.val != right.val) {
                 //restore the linked-list
                 p.next = reverse(q);
                 return false;
@@ -81,8 +81,8 @@ public class Palindrome {
         return true;
     }
 
-    private LinkedListNode reverse(LinkedListNode head) {
-        LinkedListNode prev = null, cur = head, next = null;
+    private ListNode reverse(ListNode head) {
+        ListNode prev = null, cur = head, next = null;
         while (cur != null) {
             next = cur.next;
             cur.next = prev;

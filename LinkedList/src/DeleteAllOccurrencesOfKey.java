@@ -1,15 +1,15 @@
-import Base.LinkedListNode;
+import Base.ListNode;
 
 public class DeleteAllOccurrencesOfKey {
     /**
      * We’re given the head of a linked list and a key. Delete all the nodes that contain the given key.
      * */
 
-    public LinkedListNode deleteKey(LinkedListNode head, int key) {
-        LinkedListNode prev = null, cur = head, temp;
+    public ListNode deleteKey(ListNode head, int key) {
+        ListNode prev = null, cur = head, temp;
 
         while (cur != null) {
-            if (cur.data == key) {
+            if (cur.val == key) {
                 if (cur == head) {
                     head = head.next;
                     cur = head;

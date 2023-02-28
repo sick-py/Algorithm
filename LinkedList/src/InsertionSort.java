@@ -1,4 +1,4 @@
-import Base.LinkedListNode;
+import Base.ListNode;
 
 public class InsertionSort {
     /**
@@ -13,19 +13,19 @@ public class InsertionSort {
      *
      * */
 
-    public LinkedListNode sortedInsert(LinkedListNode head, LinkedListNode node) {
+    public ListNode sortedInsert(ListNode head, ListNode node) {
         if (node == null) {
             return head;
         }
 
-        if (head == null || node.data <= head.data) {
+        if (head == null || node.val <= head.val) {
             node.next = head;
             return node;
         }
 
-        LinkedListNode cur = head;
+        ListNode cur = head;
 
-        while (cur.next != null && cur.next.data < node.data) {
+        while (cur.next != null && cur.next.val < node.val) {
             cur = cur.next;
         }
         node.next = cur.next;
@@ -34,15 +34,15 @@ public class InsertionSort {
         return head;
     }
 
-    public LinkedListNode insertionSort(LinkedListNode head) {
+    public ListNode insertionSort(ListNode head) {
         if (head == null) {
             return null;
         }
 
-        LinkedListNode sorted = null, cur = head;
+        ListNode sorted = null, cur = head;
 
         while (cur != null) {
-            LinkedListNode temp = cur.next;
+            ListNode temp = cur.next;
             sorted = sortedInsert(sorted, cur);
             cur = temp;
         }

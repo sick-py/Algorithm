@@ -1,4 +1,4 @@
-import Base.LinkedListNode;
+import Base.ListNode;
 
 public class RotateLinkedList {
     /**
@@ -27,7 +27,7 @@ public class RotateLinkedList {
      *
      * Make x as the new head node. Now, x is the head of the rotated linked list after performing n rotations.
      * */
-    int findLength(LinkedListNode head) {
+    int findLength(ListNode head) {
         int len = 0;
 
         while (head != null) {
@@ -47,7 +47,7 @@ public class RotateLinkedList {
         return n;
     }
 
-    LinkedListNode rotate(LinkedListNode head, int n) {
+    ListNode rotate(ListNode head, int n) {
         if (head == null || n == 0) {
             return head;
         }
@@ -63,7 +63,7 @@ public class RotateLinkedList {
         // If we have 1,2,3,4,5 where n = 2,
         // 4 is the start of rotated list.
         int rotationCount = len - n - 1;
-        LinkedListNode temp = head;
+        ListNode temp = head;
 
         // After this loop temp will be pointing
         // to one node prior to rotation point
@@ -71,7 +71,7 @@ public class RotateLinkedList {
             rotationCount--;
             temp = temp.next;
         }
-        LinkedListNode newHead = temp.next;
+        ListNode newHead = temp.next;
         temp.next = null;
         while (temp.next != null) {
             temp = temp.next;

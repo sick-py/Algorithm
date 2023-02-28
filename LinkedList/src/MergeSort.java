@@ -1,4 +1,4 @@
-import Base.LinkedListNode;
+import Base.ListNode;
 import DoublePointers.MergeSortedList;
 
 public class MergeSort {
@@ -11,13 +11,13 @@ public class MergeSort {
      * At each step, we divide our problem into two sub-problems. The size of each sub-problem is n/2
      *  and the total cost of combining steps (merging sorted lists) is n
      * */
-    public static LinkedListNode mergeSort(LinkedListNode head) {
+    public static ListNode mergeSort(ListNode head) {
         if (head == null || head.next == null) {
             return head;
         }
 
         //find the mid
-        LinkedListNode slow = head, fast = head, preSlow = null;
+        ListNode slow = head, fast = head, preSlow = null;
         while (fast != null && fast.next != null) {
             fast = fast.next.next;
             preSlow = slow;

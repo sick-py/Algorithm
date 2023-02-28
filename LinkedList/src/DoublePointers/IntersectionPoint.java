@@ -1,6 +1,6 @@
 package DoublePointers;
 
-import Base.LinkedListNode;
+import Base.ListNode;
 
 import static java.lang.reflect.Array.getLength;
 
@@ -16,8 +16,8 @@ public class IntersectionPoint {
      * While traversing both linked lists, if we find any node with the same addresses, it means it is an intersection point. Repeat the traversal until an intersection point is found, or both of the lists are exhausted.
      * */
 
-    public static LinkedListNode intersect(LinkedListNode L1, LinkedListNode L2) {
-        LinkedListNode l1 = null, l2 = null;
+    public static ListNode intersect(ListNode L1, ListNode L2) {
+        ListNode l1 = null, l2 = null;
         int len1 = getLength(L1);
         int len2 = getLength(L2);
         int diff = 0;
