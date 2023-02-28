@@ -35,10 +35,10 @@ public class PreSum {
      *
      * Then a better way to do this question is very similar to the prefix sum in a one-dimensional array. We can maintain a two-dimensional preSumarray to record the sum of the elements of the matrix with the origin as the vertex, and we can use several additions and subtractions The operation finds the element-wise sum of any submatrix:
      * */
-    class NumMatrix {
+    class NumMatrix0 {
         private int[][] preSumM;
 
-        public NumMatrix(int[][] matrix) {
+        public NumMatrix0(int[][] matrix) {
             int m = matrix.length, n = matrix[0].length;
             if (m == 0 || n == 0) return;
             preSumM = new int[m + 1][n + 1];
@@ -53,4 +53,42 @@ public class PreSum {
             return preSumM[x2+1][y2+1] - preSumM[x1][y2+1] - preSumM[x2+1][y1] + preSumM[x1][y1];
         }
     }
+
+    class NumArray { //303
+        int[] preSum;
+        public NumArray(int[] nums) {
+            preSum = new int[nums.length + 1];
+            preSum[0] = 0;
+            for (int i = 1; i < preSum.length; i++) {
+                preSum[i] = preSum[i - 1] + nums[i - 1];
+            }
+        }
+
+        public int sumRange(int left, int right) {
+            return preSum[right + 1] - preSum[left];
+        }
+    }
+
+    class NumMatrix { //304
+        int[][] preSum;
+        public NumMatrix(int[][] matrix) {
+            int m = matrix.length, n = matrix[0].length;
+            preSum = new int[m + 1][n + 1];
+            for (int i = 1; i < m + 1; i++) {
+                for (int j = 1; j < n + 1; j++) {
+                    preSum[i][j] = preSum[i - 1][j] + preSum[i][j - 1] - preSum[i - 1][j - 1] + matrix[i - 1][j - 1];
+                    System.out.printf(" %d ", preSum[i][j]);
+                }
+                System.out.println(" ");
+            }
+        }
+
+        public int sumRegion(int row1, int col1, int row2, int col2) {
+            return preSum[row2 + 1][col2 + 1] + preSum[row1][col1] - preSum[row1][col2 + 1] - preSum[row2 + 1][col1];
+        }
+
+
+    }
+
+
 }

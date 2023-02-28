@@ -46,4 +46,28 @@ public class Palindrome {
         }
         return res;
     }
+
+    /**
+     * 125 with real interview
+     * */
+    public boolean isPalindromeReal(String s) {
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < s.length(); i++) {
+            char c = s.charAt(i);
+            if (Character.isLetterOrDigit(c)) {
+                sb.append(Character.toLowerCase(c));
+            }
+        }
+        s = sb.toString();
+        System.out.print(s);
+        int left = 0, right = s.length() - 1;
+        while (left < right) {
+            if (s.charAt(left) != s.charAt(right)) {
+                return false;
+            }
+            left++;
+            right--;
+        }
+        return true;
+    }
 }

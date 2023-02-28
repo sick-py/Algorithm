@@ -1,3 +1,5 @@
+package LeftRightPointers;
+
 public class ContainerWithMostWater {
     /**
      * The further apart these two bars are, the more the area of the container is.
@@ -24,5 +26,23 @@ public class ContainerWithMostWater {
             }
         }
         return max;
+    }
+
+    class review {
+        public int maxArea(int[] height) {
+            int res = 0;
+            int area = 0;
+            int left = 0, right = height.length - 1;
+            while (left < right) {
+                area = (right - left) * Math.min(height[left], height[right]);
+                res = Math.max(res, area);
+                if (height[left] <= height[right]) {
+                    left++;
+                } else {
+                    right--;
+                }
+            }
+            return res;
+        }
     }
 }

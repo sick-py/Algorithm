@@ -1,4 +1,6 @@
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 public class CloneADirectedGraph<X> {
     /**
@@ -44,4 +46,5 @@ public class CloneADirectedGraph<X> {
         cloneRec(graph.nodes.get(0), res, nodesCompleted);
         return res;
     }
+
 }

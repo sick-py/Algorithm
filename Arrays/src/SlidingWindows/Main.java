@@ -1,9 +1,6 @@
 package SlidingWindows;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class Main {
     /**
@@ -60,6 +57,27 @@ public class Main {
         }
     }
 
+    public boolean containsNearbyDuplicate(int[] nums, int k) {
+        HashSet<Integer> window = new HashSet<>();
+        int left = 0, right = 0;
+        while (right < nums.length) {
+            int a = nums[right];
+            for (int n : window) {
+                System.out.printf("windowR: [%d]\n", n);
+            }
+            if (window.contains(a)) {
+                return true;
+            }
+            window.add(a);
+            right++;
+            while (right - left > k) {
+                int d = nums[left];
+                left++;
+                window.remove(d);
+            }
+        }
+        return false;
+    }
     /**
      *
      * Well, this is the end of the sliding window algorithm template. I hope everyone can understand the idea, remember the algorithm template and master it.

@@ -1,6 +1,8 @@
 package Main;
 
 import javax.swing.tree.TreeNode;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class Graph {
@@ -117,6 +119,47 @@ public class Graph {
  *
  * Of course, if the title tells you that there are no loops in the graph, you can omit all the visitedarrays , which is basically the traversal of the multi-fork tree.
  */
+class review {
+    class Node {
+        public int val;
+        public List<Node> neighbors;
+        public Node() {
+            val = 0;
+            neighbors = new ArrayList<Node>();
+        }
+        public Node(int _val) {
+            val = _val;
+            neighbors = new ArrayList<Node>();
+        }
+        public Node(int _val, ArrayList<Node> _neighbors) {
+            val = _val;
+            neighbors = _neighbors;
+        }
+    }
+    public Node cloneGraph(Node node) {
+        if (node == null) return null;
+        Node copy = new Node(node.val);
+        Node[] visited = new Node[101];
+        Arrays.fill(visited, null);
+        dfs(node, copy, visited);
+        return copy;
+    }
+
+    private void dfs(Node node, Node copy, Node[] visited) {
+        visited[copy.val] = copy;
+
+        for (Node n : node.neighbors) {
+            if (visited[n.val] == null) {
+                Node newNode = new Node(n.val);
+                copy.neighbors.add(newNode);
+                dfs(n, newNode, visited);
+            } else {
+                copy.neighbors.add(visited[n.val]);
+            }
+        }
+    }
+
+}
 
 
 }

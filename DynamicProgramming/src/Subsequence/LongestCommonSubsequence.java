@@ -14,7 +14,7 @@ public class LongestCommonSubsequence {
 
     /**
      * Give you two strings s1and s2, please find the longest common subsequence between them, and return the length of this subsequence. The function signature is as follows:
-     * The definition of this dpfunction is dp(s1, i, s2, j)to s1[i..]calculate s2[j..]the length of the longest common subsequence of and .
+     * The definition of this dp function is dp(s1, i, s2, j)to s1[i..]calculate s2[j..]the length of the longest common subsequence.
      *
      * According to this definition, the answer we want is dp(s1, 0, s2, 0), and the base case is i == len(s1)or j == len(s2), because at this time s1[i..]or s2[j..]is equivalent to an empty string, and the length of the longest common subsequence is obviously 0:
      *
@@ -45,7 +45,7 @@ public class LongestCommonSubsequence {
         }
 
         if (s1.charAt(i) == s2.charAt(j)) {
-            memo[i][j] = 1 + dp(s1, i - 1, s2, j - 1);
+            memo[i][j] = 1 + dp(s1, i - 1, s2, j - 1);//s[i] == s[j] and in the lcs
         } else {
             memo[i][j] = max(
                     dp(s1, i + 1, s2, j), //s1[i] is not in lcs
@@ -134,4 +134,38 @@ public class LongestCommonSubsequence {
     }
 
 
+    class review {
+        int[][] memo;
+        public int longestCommonSubsequence(String text1, String text2) {
+            int m = text1.length(), n = text2.length();
+            memo = new int[m][n];
+            for (int[] l : memo) {
+                Arrays.fill(l, -1);
+            }
+            return dp2(text1, text2, 0, 0);
+        }
+
+        //return the lcs of t1[i, ..m - 1] and t2[j,...n - 1]
+        private int dp2(String text1, String text2, int i, int j) {
+            int m = text1.length(), n = text2.length();
+            if (i >= m || j >= n) {
+                return 0;
+            }
+            if (memo[i][j] != -1) {
+                return memo[i][j];
+            }
+
+            if (text1.charAt(i) == text2.charAt(j)) {
+                memo[i][j] = 1 + dp2(text1, text2, i + 1, j + 1);
+                return memo[i][j];
+            } else {
+                memo[i][j] = max(
+                        dp2(text1, text2, i + 1, j),
+                        dp2(text1, text2, i, j + 1),
+                        dp2(text1, text2, i + 1, j + 1)
+                );
+            }
+            return memo[i][j];
+        }
+    }
 }

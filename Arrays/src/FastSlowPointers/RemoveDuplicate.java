@@ -106,4 +106,31 @@ public class RemoveDuplicate {
         }
     }
 
+    class review {
+        //if it's 2 duplicate, we use a count to recorde the times
+        public int removeDuplicates(int[] nums) {
+            if (nums.length == 0) {
+                return 0;
+            }
+            int slow = 0, fast = 0;
+            int count = 0;
+            while (fast < nums.length) {
+                if (nums[fast] != nums[slow]) {
+                    slow++;
+                    nums[slow] = nums[fast];
+                } else if (slow < fast && count < 2) {
+                    //if the duplicate is not more than 2
+                    slow++;
+                    nums[slow] = nums[fast];
+                }
+                fast++;
+                count++;
+                if (fast < nums.length && nums[fast] != nums[fast - 1]) {
+                    count = 0;
+                }
+            }
+            return slow + 1;
+        }
+    }
+
 }
