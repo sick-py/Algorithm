@@ -62,4 +62,25 @@ public class Combination {
         }
     }
 
+    class review {
+        List<List<Integer>> res = new LinkedList<>();
+        LinkedList<Integer> path = new LinkedList<>();
+        public List<List<Integer>> combine(int n, int k) {
+            backtrack0(n, 1, k);
+            return res;
+        }
+
+        private void backtrack0(int n, int start, int k) {
+            if (path.size() == k) {
+                res.add(new LinkedList<>(path));
+            }
+
+            for (int i = start; i <= n; i++) {
+                path.add(i);
+                backtrack0(n, i + 1, k);
+                path.removeLast();
+            }
+        }
+    }
+
 }

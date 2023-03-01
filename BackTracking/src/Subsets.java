@@ -11,7 +11,7 @@ public class Subsets {
      * If the root node is taken as the 0th layer, and the elements on the branches between each node and the root node are used as the value of the node, then all the nodes in the n layer are n all subsets of size .
      * Then go a step further, if you want to calculate all the subsets, you just need to traverse the multi-fork tree and collect the values ​​​​of all nodes?
      *
-     * Read the previous article Backtracking Algorithm Core FrameworkIt should be easy for readers to understand this code. We use startparameters to control the growth of branches to avoid duplicate subsets, use trackto record the value of the path from the root node to each node, and at the same time put the path value of each node in the preorder position Collect them, and complete the traversal of the backtracking tree to collect all subsets:
+     * Read the previous article Backtracking Algorithm Core FrameworkIt should be easy for readers to understand this code. We use startparameters to control the growth of branches to avoid duplicate subsets, use track to record the value of the path from the root node to each node, and at the same time put the path value of each node in the preorder position Collect them, and complete the traversal of the backtracking tree to collect all subsets:
      *
      * Finally, backtrackthere seems to be no base case at the beginning of the function, will it enter infinite recursion?
      *
@@ -40,7 +40,7 @@ public class Subsets {
      * Check out Question 90 " Subset II"It is such a question:
      * Given an array of integers nums, which may contain repeated elements, please return all possible subsets of the array.
      *
-     * Take nums = [1,2,2]for example , in order to distinguish two 2are different elements, we will write later nums = [1,2,2'].
+     * Take nums = [1,2,2]for example , in order to distinguish two are different elements, we will write later nums = [1,2,2'].
      * Draw the tree structure of the subset according to the previous idea. Obviously, two adjacent branches with the same value will produce duplication:
      * [
      *     [],

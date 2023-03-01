@@ -95,10 +95,11 @@ public class Permutations {
              * So the key now is how to design pruning logic to remove this duplication?
              *
              * The answer is that the relative position of the same elements in the arrangement is guaranteed to remain the same .
-             * For example, in nums = [1,2,2']this example, I keep 2in 2'front of the array.
+             * For example, in nums = [1,2,2']this example, I keep 2 in front of 2' the array.
              * In this case, you can only pick 3 permutations from the above 6 permutations that meet this condition:
              *
-             * When there is a repeated element, such as input nums = [1,2,2',2''], it will be selected 2'only if 2it has been used. Similarly, it will be selected 2''only if 2'it has been used, which ensures the relative position of the same element in the arrangement Guaranteed to be fixed .
+             * When there is a repeated element, such as input nums = [1,2,2',2''], it will be selected 2'only if 2 has been used. Similarly, it will be selected 2'' only if 2' has been used, which ensures the relative position of the same element in the arrangement Guaranteed to be fixed .
+             *
              * Let’s expand here. If you !used[i - 1]change used[i - 1], you can actually pass all the test cases, but the efficiency will decrease. Why?
              * The reason why this modification will not cause errors is because this way of writing is equivalent to maintaining 2'' -> 2' -> 2the relative order of and can eventually achieve the effect of deduplication.
              * But why does writing efficiency drop in this way? Because there are not enough branches cut off by this way of writing.
@@ -118,7 +119,7 @@ public class Permutations {
      *
      * For example, input nums = [1,2,3], then there are 3^3 = 27 full permutations under this condition:
      *
-     * The standard full permutation algorithm uses usedarrays for pruning to avoid reusing the same element. If elements are allowed to be reused, just let yourself go and remove all the pruning logic of used the array .
+     * The standard full permutation algorithm uses used arrays for pruning to avoid reusing the same element. If elements are allowed to be reused, just let yourself go and remove all the pruning logic of used the array .
      * */
     public List<List<Integer>> permuteReused(int[] nums) {
         backtrackReused(nums);
@@ -135,6 +136,65 @@ public class Permutations {
             track.addLast(nums[i]);
             backtrackReused(nums);
             track.removeLast();
+        }
+    }
+
+    class review {
+        List<List<Integer>> res = new LinkedList<>();
+        LinkedList<Integer> path = new LinkedList<>();
+        boolean[] used;
+        public List<List<Integer>> permuteUnique(int[] nums) {
+            Arrays.sort(nums);
+            used = new boolean[nums.length];
+            backtrackR1(nums);
+            return res;
+        }
+
+        private void backtrackR1(int[] nums) {
+            if (path.size() == nums.length) {
+                res.add(new LinkedList<>(path));
+                return;
+            }
+
+            for (int i = 0; i < nums.length; i++) {
+                if (used[i]) {
+                    continue;
+                }
+
+                if (i > 0 && nums[i] == nums[i - 1] && !used[i - 1]) {
+                    continue;
+                }
+
+                path.addLast(nums[i]);
+                used[i] = true;
+                backtrackR1(nums);
+                used[i] = false;
+                path.removeLast();
+            }
+        }
+
+        public List<List<Integer>> permute(int[] nums) {
+            used = new boolean[nums.length];
+            backtrackR0(nums);
+            return res;
+        }
+
+        private void backtrackR0(int[] nums) {
+            if (path.size() == nums.length) {
+                res.add(new LinkedList<>(path));
+                return;
+            }
+
+            for (int i = 0; i < nums.length; i++) {
+                if (used[i]) {
+                    continue;
+                }
+                used[i] = true;
+                path.addLast(nums[i]);
+                backtrackR0(nums);
+                path.removeLast();
+                used[i] = false;
+            }
         }
     }
 
