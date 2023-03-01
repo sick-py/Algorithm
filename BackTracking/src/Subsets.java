@@ -8,7 +8,7 @@ public class Subsets {
      * Because the elements in the collection don't need to consider the order, only [1,2,3]after 2the middle 3, if you think forward 1, then [2,1]will be [1,2]repeated with the subset that has been generated before.
      *
      * In other words, we prevent duplicate subsets by keeping the relative order of elements unchanged .
-     * If the root node is taken as the 0th layer, and the elements on the branches between each node and the root node are used as the value of the node, then all the nodes in the nlayer are nall subsets of size .
+     * If the root node is taken as the 0th layer, and the elements on the branches between each node and the root node are used as the value of the node, then all the nodes in the n layer are n all subsets of size .
      * Then go a step further, if you want to calculate all the subsets, you just need to traverse the multi-fork tree and collect the values ​​​​of all nodes?
      *
      * Read the previous article Backtracking Algorithm Core FrameworkIt should be easy for readers to understand this code. We use startparameters to control the growth of branches to avoid duplicate subsets, use trackto record the value of the path from the root node to each node, and at the same time put the path value of each node in the preorder position Collect them, and complete the traversal of the backtracking tree to collect all subsets:
@@ -108,6 +108,27 @@ public class Subsets {
         List<List<Integer>> res = new LinkedList<>();
         LinkedList<Integer> track = new LinkedList<>();
         int trackSum = 0;
+
+        public List<List<Integer>> subsetsWithDup(int[] nums) {
+            Arrays.sort(nums); //you need to sort the array to reduce the duplicate
+            backtrack1(nums, 0);
+            return res;
+        }
+
+        private void backtrack1(int[] nums, int start) {
+            res.add(new LinkedList<>(track));
+
+            for (int i = start; i < nums.length; i++) {
+                if (i > start && nums[i] == nums[i - 1]) { // i > start, not != 0
+                    continue;
+                }
+                track.addLast(nums[i]);
+                backtrack1(nums, i + 1);
+                track.removeLast();
+            }
+        }
+
+
         public List<List<Integer>> combinationSum(int[] candidates, int target) {
             backtrack0(candidates, target, 0);
             return res;
@@ -131,6 +152,8 @@ public class Subsets {
                 trackSum -= candidates[i];
             }
         }
+
+
 
 
     }

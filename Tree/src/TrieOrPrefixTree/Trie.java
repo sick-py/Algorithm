@@ -1,3 +1,5 @@
+package TrieOrPrefixTree;
+
 public class Trie {
     /**
      *  A trie is a type of search tree where nodes are usually keyed by strings1. It can be used to efficiently search for keys starting with a specific prefi. For example, if you have a trie with keys “cat”, “car”, “dog” and “door”, you can quickly find all the keys that start with “d” by following the branch that corresponds to that letter.
