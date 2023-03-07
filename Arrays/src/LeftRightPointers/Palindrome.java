@@ -70,4 +70,49 @@ public class Palindrome {
         }
         return true;
     }
+
+    /** 516 longest palindromic subsequence
+     * */
+    //go to the dynamci subsequence
+
+    class review {
+        String longest(String str, int i, int j) {
+            while (i >= 0 && j < str.length() && str.charAt(i) == str.charAt(j)) {
+                i--;
+                j++;
+            }
+            return str.substring(i + 1, j);
+        }
+
+        public String longestPalindrome(String s) {
+            String res = "";
+            String s1 = "";
+            for (int i = 0; i < s.length(); i++) {
+                s1 = longest(s, i, i);
+                res = s1.length() > res.length() ? s1 : res;
+                s1 = longest(s, i, i + 1);
+                res = s1.length() > res.length() ? s1 : res;
+            }
+            return res;
+        }
+
+        int count(String str, int i, int j) {
+            int count = 0;
+            while (i >= 0 && j < str.length() && str.charAt(i) == str.charAt(j)) {
+                count++;
+                i--;
+                j++;
+            }
+            return count;
+        }
+
+        public int countSubstrings(String s) {
+            int res = 0;
+            for (int i = 0; i < s.length(); i++) {
+                res += count(s, i, i);
+                res += count(s, i, i + 1);
+            }
+            return res;
+        }
+    }
 }

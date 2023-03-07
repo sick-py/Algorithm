@@ -68,7 +68,7 @@ public class Graph {
      *
      * So, if the graph contains cycles, the traversal frame is assisted by an visited array :
      *
-     * The nodes marked as true in are represented in gray, and the nodes onPathmarked as true in are represented in green . It is analogous to the snake game, visitedrecording the grids the snake has passed, while onPathonly recording snake body. In the traversal process of the graph, it onPathis used to judge whether it is a loop. It is analogous to the scene when a greedy snake bites itself (forms a loop). Now you can understand the difference between the two.
+     * The nodes marked as true in are represented in gray, and the nodes onPathmarked as true in are represented in green . It is analogous to the snake game, visited recording the grids the snake has passed, while onPathonly recording snake body. In the traversal process of the graph, it onPathis used to judge whether it is a loop. It is analogous to the scene when a greedy snake bites itself (forms a loop). Now you can understand the difference between the two.
      *
      * If you are asked to deal with path-related issues, this onPathvariable will definitely be used, such astopological sortThere is use in it.
      *

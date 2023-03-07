@@ -7,7 +7,7 @@ public class TargetSum {
      * We often said that the backtracking algorithm is somewhat similar to the recursive algorithm. If you really can’t figure out the state transition equation for some problems, trying to use the backtracking algorithm to solve it violently is also a smart strategy, which is better than not being able to write a solution.
      * So, what is the relationship between backtracking algorithm and dynamic programming? They both involve recursion, algorithm templates look alike, both involve making "choices", really like father and son.
      *
-     * Give you an input of a non-negative integer array numsand a target value, now you can add a positive sign or a negative sign totarget each element , please calculate how many combinations of signs can make the sum of the elements in is
+     * Give you an input of a non-negative integer array numsand a target value, now you can add a positive sign or a negative sign to target each element , please calculate how many combinations of signs can make the sum of the elements in is
      * For example, input nums = [1,3,1,4,2], target = 5, the algorithm returns 3, because there are the following 3 combinations that can make targetequal to 5:
      * -1+3+1+4-2=5
      * -1+3+1+4-2=5
@@ -80,7 +80,7 @@ public class TargetSum {
 
     /**
      * In fact, this problem can be transformed into a subset partition problem, and the subset partition problem is a typical knapsack problem.
-     * First of all, if we numsdivide into two subsets Aand B, which respectively represent +the number allocated and the number allocated -, then they targethave the following relationship with:
+     * First of all, if we nums divide into two subsets A and B, which respectively represent +the number allocated and the number allocated -, then they target have the following relationship with:
      *
      * sum(A) - sum(B) = target
      * sum(A) = target + sum(B)
@@ -117,5 +117,26 @@ public class TargetSum {
             }
         }
         return dp[n][sum];
+    }
+
+    class review {
+        int backpack0(int[] nums, int sum) {
+            int n = nums.length;
+            int[][] dp = new int[n  + 1][sum + 1];
+            dp[0][0] = 1;
+
+            for (int i = 1; i <= n; i++) {
+                for (int j = 1; j <= sum; j++) {
+                    if (j - nums[i - 1] < 0) {
+                        dp[i][j] = dp[i - 1][j];
+                    } else {
+                        dp[i][j] = dp[i - 1][j] + dp[i - 1][j - nums[i - 1]];
+                    }
+                }
+            }
+            return dp[n][sum];
+        }
+
+
     }
 }

@@ -16,7 +16,8 @@ public class SplitEqualSubset {
      *
      * The second step is to clarify the definition of the dp array .
      * According to the routine of the knapsack problem, the following definition can be given:
-     * dp[i][j] = x Indicates that, for the iprevious item ( icounting from 1), jwhen , if xis true, it means that the backpack can be filled exactly, and if xis false, it means that the backpack cannot be filled exactly .
+     * dp[i][j] = x Indicates that, for the i previous item ( i counting from 1), j when , if xis true, it means that the backpack can be filled exactly, and if xis false, it means that the backpack cannot be filled exactly .
+     *
      * For example, if dp[4][9] = true, the implication is: for a knapsack with a capacity of 9, there is a way to fill the knapsack exactly full if only the first 4 items are used.
      *
      * The third step is to think about the logic of state transition based on "choice" .
@@ -79,5 +80,34 @@ public class SplitEqualSubset {
             }
         }
         return dp[sum];
+    }
+
+    class review {
+        public boolean canPartition(int[] nums) {
+            int sum = 0;
+            for (int i : nums) {
+                sum += i;
+            }
+            if (sum % 2 != 0) {
+                return false;
+            }
+            sum /= 2;
+            boolean[][] dp = new boolean[nums.length + 1][sum + 1];
+            //base case //pay attention to definition
+            for (int i = 0; i <= sum; i++) {
+                dp[i][0] = true;
+            }
+
+            for (int i = 1; i < nums.length + 1; i++) {
+                for (int j = 1; j <= sum; j++) {
+                    if (j < nums[i - 1]) {
+                        dp[i][j] = dp[i - 1][j];
+                    } else {
+                        dp[i][j] = dp[i - 1][j] || dp[i - 1][j - nums[i - 1]];
+                    }
+                }
+            }
+            return dp[nums.length][sum];
+        }
     }
 }

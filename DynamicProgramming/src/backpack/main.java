@@ -59,10 +59,13 @@ public class main {
         return dp[N][W];
     }
 
+
     public static void main(String[] args) {
         int N = 3, W = 4;
         int[] wt = new int[] {2, 1, 3};
         int[] val = new int[] {4, 2, 3};
         bag0(W, N, wt, val);
     }
+
+
 }
