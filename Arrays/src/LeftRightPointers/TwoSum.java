@@ -1,5 +1,6 @@
 package LeftRightPointers;
 
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -62,6 +63,20 @@ public class TwoSum {
                 }
             }
             return res;
+        }
+    }
+
+    class review2 {
+        //except the sort and two pointers, we can also use space to do it in O(n)
+        public int[] twoSum(int[] nums, int target) {
+            HashMap<Integer, Integer> valueToIndex = new HashMap<>();
+            for (int i = 0; i < nums.length; i++) {
+                if (valueToIndex.containsKey(nums[i])) {
+                    return new int[]{valueToIndex.get(nums[i]), i};
+                }
+                valueToIndex.put(target - nums[i], i);
+            }
+            return new int[] {-1, -1};
         }
     }
 }

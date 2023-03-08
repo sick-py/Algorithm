@@ -1,5 +1,7 @@
 package FastSlowPointers;
 
+import java.util.HashSet;
+
 public class RemoveDuplicate {
     class  LinkedListNode {
         int data;
@@ -130,6 +132,54 @@ public class RemoveDuplicate {
                 }
             }
             return slow + 1;
+        }
+    }
+
+    class review2 {
+        public int removeDuplicates(int[] nums) {
+            int slow = 0, fast = 0;
+            while (fast < nums.length) {
+                if (nums[slow] != nums[fast]) {
+                    nums[++slow] = nums[fast];
+                }
+                fast++;
+            }
+            return slow + 1;
+        }
+
+        public boolean containsDuplicate(int[] nums) {
+            HashSet<Integer> set = new HashSet<>();
+            for (int i : nums) {
+                if (set.contains(i)) {
+                    return true;
+                }
+                set.add(i);
+            }
+            return false;
+        }
+
+        public int singleNumber(int[] nums) {
+            //1 ^ 0 = 1
+            //1 ^ 1 = 0
+            int n = nums.length;
+            int res = 0;
+            for (int i = 0; i < n; i++) {
+                res = res ^ nums[i];
+            }
+            return res;
+        }
+
+        public void moveZeroes(int[] nums) {
+            int slow = 0, fast = 0;
+            while (fast < nums.length) {
+                if (nums[fast] != 0) {
+                    nums[slow++] = nums[fast];
+                }
+                fast++;
+            }
+            while (slow < nums.length) {
+                nums[slow++] = 0;
+            }
         }
     }
 
