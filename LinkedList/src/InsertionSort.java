@@ -49,4 +49,27 @@ public class InsertionSort {
 
         return sorted;
     }
+
+    class review {
+        ListNode removeNthNode(ListNode head, int n) { //n = 1, the first node
+            ListNode dummy = new ListNode(-1), cur = dummy;
+            dummy.next = head;
+            while (--n != 0) {
+                cur = cur.next;
+            }
+            cur.next = cur.next.next;
+            return dummy.next;
+        }
+        public ListNode removeNthFromEnd(ListNode head, int n) {
+            int len = 0;
+            ListNode cur = head;
+            while (cur != null) {
+                cur = cur.next;
+                len++;
+            }
+            n = len - n + 1;
+            System.out.println(n);
+            return removeNthNode(head, n);
+        }
+    }
 }

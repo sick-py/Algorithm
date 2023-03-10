@@ -49,7 +49,7 @@ public class Palindrome {
      * In this way, just add a piece of code before the function return to restore the original linked list order:
      * */
 
-    boolean isPalindrome(ListNode head) {
+    boolean isPalindrome0(ListNode head) {
         ListNode slow = head, fast = head, p = null;
         while (fast != null && fast.next != null) {
             p = slow;
@@ -91,6 +91,24 @@ public class Palindrome {
         }
         return prev;
     }
+
+    public boolean isPalindrome(ListNode head) {
+        ListNode fast = head, slow = head;
+        while (fast != null && fast.next != null) {
+            fast = fast.next.next;
+            slow = slow.next;
+        }
+        ListNode right = reverse(slow), left = head;
+        while (left != null && right != null) {
+            if (left.val != right.val) {
+                return false;
+            }
+            left = left.next;
+            right = right.next;
+        }
+        return true;
+    }
+
 
 
 }

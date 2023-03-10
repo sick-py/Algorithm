@@ -58,4 +58,27 @@ public class main {
      *
      * So on the whole, the height of this binary tree is logN, and the number of elements in each layer is the length of the original array N, so the total time complexity is O(NlogN).
      * */
+    class review {
+        public void merge(int[] nums1, int m, int[] nums2, int n) {
+            int index = m + n - 1, i = m - 1, j = n - 1;
+            while (i >= 0 && j >= 0) {
+                if (nums1[i] < nums2[j]) {
+                    nums1[index] = nums2[j];
+                    j--;
+                } else {
+                    nums1[index] = nums1[i];
+                    i--;
+                }
+                index--;
+            }
+
+            while (i >= 0) {
+                nums1[index--] = nums1[i--];
+            }
+
+            while (j >= 0) {
+                nums1[index--] = nums2[j--];
+            }
+        }
+    }
 }

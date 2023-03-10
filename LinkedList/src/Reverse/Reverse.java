@@ -77,4 +77,19 @@ public class Reverse {
         head.next = null;
         return reversedList;
     }
+    class reveiw {
+        public ListNode reverseList(ListNode head) {
+            if (head == null) {
+                return null;
+            }
+            ListNode prev = null, cur = head, next;
+            while (cur != null) {
+                next = cur.next;
+                cur.next = prev;
+                prev = cur;
+                cur = next;
+            }
+            return prev;
+        }
+    }
 }

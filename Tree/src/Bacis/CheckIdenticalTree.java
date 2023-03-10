@@ -34,5 +34,30 @@ public class CheckIdenticalTree {
         return false;
     }
 
+    public boolean isSymmetric(TreeNode root) {
+        if (root.left == null && root.right == null) {
+            return true;
+        }
+
+        if (root.left == null || root.right == null) {
+            return false;
+        }
+        return identical0(root.left, root.right);
+    }
+
+    boolean identical0(TreeNode left, TreeNode right) {
+        if (left == null && right == null) {
+            return true;
+        } else if (left == null || right == null) {
+            return false;
+        }
+
+        if (left.data != right.data) {
+            return false;
+        }
+
+        return identical0(left.left, right.right) && identical0(left.right, right.left);
+    }
+
 
 }

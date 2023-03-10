@@ -32,4 +32,25 @@ public class IsBSTValid {
         return isValid(root.left, min, root.data) &&
                 isValid(root.right, root.data, max);
     }
+
+    class review {
+        public boolean isValidBST(TreeNode root) {
+            return helper(root, Integer.MIN_VALUE, Integer.MAX_VALUE);
+        }
+
+        private boolean helper(TreeNode root, int minValue, int maxValue) {
+            if (root == null) {
+                return true;
+            }
+            if (root.data < minValue || root.data > maxValue) {
+                return false;
+            }
+
+            if (helper(root.left, minValue, root.data) && helper(root.right, root.data, maxValue)) {
+                return true;
+            }
+
+            return false;
+        }
+    }
 }
