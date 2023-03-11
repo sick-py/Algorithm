@@ -1,6 +1,5 @@
 package FancyTraversalForMatrix;
 
-import static jdk.nashorn.internal.objects.NativeArray.reverse;
 
 public class RotateMatrix {
     /**
@@ -21,6 +20,15 @@ public class RotateMatrix {
 
         for (int[] row : matrix) {
             reverse(row);
+        }
+    }
+
+    void reverse(int[] row) {
+        int left = 0, right = row.length;
+        while (left < right) {
+            int temp = row[left];
+            row[left] = row[right];
+            row[right] = temp;
         }
     }
 
