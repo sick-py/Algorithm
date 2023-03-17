@@ -3,7 +3,6 @@ package backpack;
 public class SplitEqualSubset {
     /**
      * Input a non-empty array containing only positive integers nums. Please write an algorithm to judge whether the array can be divided into two subsets so that the sum of the elements of the two subsets is equal.
-     *
      * You are given N items and W bag, each item has two attributes of weight and value. Among them, the weight of the if irst item is wt[i], and the value is val[i]. Now let you use this backpack to pack items, what is the maximum value that can be loaded?
      *
      * So for this problem, we can first sum the sets and get sum, and turn the problem into a knapsack problem:

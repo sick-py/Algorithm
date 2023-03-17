@@ -18,7 +18,7 @@ public class TargetSum {
      * The core of any algorithm is exhaustion, and the backtracking algorithm is a violent exhaustion algorithm.
      * The key is to figure out what "choice" is, and for this question, isn't "choice" obvious? For each number nums[i], we can choose to give a positive sign +or- a negative sign , and then use the backtracking template to enumerate all possible results, count how many combinations can be made up, target isn't it enough?
      *
-     * The above backtracking algorithm can solve this problem, and the time complexity is O(2^N), which Nis numsthe size of .
+     * The above backtracking algorithm can solve this problem, and the time complexity is O(2^N), which N is numsthe size of .
      * found that this backtracking algorithm is a binary tree traversal problem:
      * */
 
@@ -87,7 +87,7 @@ public class TargetSum {
      * sum(A) + sum(A) = target + sum(B) + sum(A)
      * 2 * sum(A) = target + sum(nums)
      *
-     * In summary, it can be deduced sum(A) = (target + sum(nums)) / 2that the original problem is transformed into: How numsmany subsets exist in A, so Athat(target + sum(nums)) / 2 the sum of the elements in is ?
+     * In summary, it can be deduced sum(A) = (target + sum(nums)) / 2that the original problem is transformed into: How many subsets exist in A, so that the sum of the elements in A is (target + sum(nums)) / 2 ?
      *
      * in  the second step which is to clarify the definition of the dparray .
      * According to this definition, obviously dp[0][..] = 0, because there are no items, there is no way to pack the backpack at all; but dp[0][0]should be an exception, because if the maximum load of the backpack is 0, "nothing" can be regarded as a packing method, ie dp[0][0] = 1.

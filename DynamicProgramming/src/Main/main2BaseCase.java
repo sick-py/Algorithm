@@ -2,7 +2,6 @@ package Main;
 
 import java.util.Arrays;
 
-import static jdk.nashorn.internal.objects.NativeMath.min;
 
 public class main2BaseCase {
     /**

@@ -80,5 +80,48 @@ public class main {
                 nums1[index--] = nums2[j--];
             }
         }
+
+        int[] temp;
+        void mergeSort(int[] nums) {
+            int n = nums.length;
+            temp = new int[n];
+            helper(nums, 0, n - 1);
+
+        }
+
+        private void helper(int[] nums, int low, int high) {
+            if (low == high) {
+                return;
+            }
+
+            int mid = low + (high - low) / 2;
+            helper(nums, low, mid);
+            helper(nums, mid + 1, high);
+            merge0(nums, low, mid, high);
+        }
+
+        private void merge0(int[] nums, int low, int mid, int high) {
+            for (int i = low; i <= high; i++) {
+                temp[i] = nums[i];
+            }
+            int i = low;
+            int i1 = low, i2 = mid + 1;
+            while (i1 <= mid && i2 <= high) {
+                if (temp[i1] < temp[i2]) {
+                    nums[i++] = temp[i1++];
+                } else {
+                    nums[i++] = temp[i2++];
+                }
+            }
+
+            while (i1 <= mid) {
+                nums[i++] = temp[i1++];
+            }
+
+            while (i2 <= high) {
+                nums[i++] = temp[i2++];
+            }
+
+        }
     }
 }

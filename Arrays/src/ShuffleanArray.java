@@ -10,9 +10,12 @@ public class ShuffleanArray {
      * Resets the array to its original configuration and returns it.
      * Returns a random shuffling of the array.
      *
-     * A useful analogy is to think of the indices of the array as if they were picked from a bag at random, while at the same time maintaining a current index into the input array. Every time we pick an index at random from the bag, we swap the element at that position in the array with the element at the current index.
+     * A useful analogy is to think of the indices of the array as if they were picked from a bag at random, while at
+     * the same time maintaining a current index into the input array. Every time we pick an index at random from the
+     * bag, we swap the element at that position in the array with the element at the current index.
      *
-     * The direct implementation of this approach requires us to keep track of which indices were already picked from the bag to avoid picking them repeatedly. This solution can impose a cost, one possibility is given below:
+     * The direct implementation of this approach requires us to keep track of which indices were already picked from
+     * the bag to avoid picking them repeatedly. This solution can impose a cost, one possibility is given below:
      *
      * We maintain two parts of the array:
      * 1.The already shuffled part

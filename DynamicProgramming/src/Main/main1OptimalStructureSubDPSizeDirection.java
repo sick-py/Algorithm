@@ -35,7 +35,7 @@ public class main1OptimalStructureSubDPSizeDirection {
      * To transform the problem is to transform the problem equivalently: Isn't the maximum score difference equivalent to the difference between the highest score and the lowest score? Isn't that the highest and lowest score required? Isn't it the first question we discussed?
      *
      *
-     * To give another common but very simple example, it is not difficult to find the maximum value of a binary tree (for simplicity, assume that the values ​​​​in the nodes are all non-negative numbers):
+     * To give another common but very simple example, it is not difficult to find the maximum value of a binary tree (for simplicity, assume that the values in the nodes are all non-negative numbers):
      * int maxVal(TreeNode root) {
      *         if (root == null) {
      *             return -1;

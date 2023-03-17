@@ -8,7 +8,7 @@ public class main1 {
      * This is the 322th question of Lituo " change exchange":
      *
      * You are given k coins c1, c2 ... ck, and the number of each coin is unlimited, and then a total amount is given amount, and you are asked at least how many coins you need to make up this amount. If it is impossible to make up, the algorithm returns -1.
-     * For example k = 3, the denominations are 1, 2, 5, and the total amount amount = 11. Then at least 3 coins are needed to make it out, that is, 11 = 5 + 5 + 1.
+     * For example k = 3, the denominations are 1, 2, 5, and the total amount = 11. Then at least 3 coins are needed to make it out, that is, 11 = 5 + 5 + 1.
      *
      * violent recursion Optimal substructure
      * First of all, this problem is a dynamic programming problem because it has an "optimal substructure". To conform to the "optimal substructure", the subproblems must be independent of each other .
@@ -82,7 +82,7 @@ public class main1 {
 
     /** dp
      *  There is no difference between the "state", "selection" and base case. dpThe definition of the array is similar to the dpfunction , and the "state", that is, the target amount as a variable. But dpfunctions are reflected in function parameters, and dparrays are reflected in array indexes:
-     *  dpDefinition of the array: When the target amount iis , at least dp[i]coins are required to make up .
+     *  dpDefinition of the array: When the target amount is i, at least dp[i]coins are required to make up .
      * */
 
     int coin(int[] coins, int amount) {

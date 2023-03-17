@@ -58,6 +58,25 @@ public class CompleteBackpack {
         return dp[n][amount];
     }
 
+    int change0(int amount, int[] coins) {
+        int n = coins.length;
+        int[][] dp = new int[n + 1][amount + 1];
+        for (int i = 0; i <= n; i++) {
+            dp[i][0] = 1;
+        } //bug
+
+        for (int i = 1; i <= n; i++) {
+            for (int j = 1; j <= amount; j++) {
+                if (j - coins[i - 1] < 0) {
+                    dp[i][j] = dp[i - 1][j];
+                } else {
+                    dp[i][j] = dp[i - 1][j] + dp[i][j - coins[i - 1]];
+                }
+            }
+        }
+        return dp[n][amount];
+    }
+
     /** compress the space
      * Iterating j from 1 to back is equivalent to using dp[j-coins[i]] immediately when it is calculated in the ith iteration, which actually means dp[i][[j-coins[i]].
      * Iterating j from the back to 1 is equivalent to dp[j-coins[i]] is the old result saved in the i - 1 iteration, which actually represents dp[i - 1][[j-coins[i]]. The state transition equation needs dp[i][j-coins[i]], so after compressing into one dimension, iterate j from front to back.

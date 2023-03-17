@@ -3,9 +3,11 @@ package FancyTraversalForMatrix;
 
 public class RotateMatrix {
     /**
-     * How to rotate a 2D matrix "in place", But in fact, this question cannot take the usual path . Before talking, it's similar to reverse the order of all words in place .
+     * How to rotate a 2D matrix "in place", But in fact, this question cannot take the usual path .
+     * Before talking, it's similar to reverse the order of all words in place .
      *
-     * We can first mirror the matrix according to the diagonal from the upper left to the lower right, Then invert each row of the matrix
+     * We can first mirror the matrix according to the diagonal from the upper left to the lower right, T
+     * hen invert each row of the matrix
      * */
     void rotate(int[][] matrix) {
         int n = matrix.length;

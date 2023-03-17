@@ -19,12 +19,12 @@ public class main {
      *
      * The second step is to clarify the definition of the dp array .
      * First look at the "state" just found, there are two, which means we need a two-dimensional dp array .
-     * dp[i][w]The definition of is as follows: For the iprevious items, the capacity of the current knapsack is w, and the maximum value that can be loaded in this case is dp[i][w].
+     * dp[i][w]The definition of is as follows: For the i previous items, the capacity of the current knapsack is w, and the maximum value that can be loaded in this case is dp[i][w].
      * For example, if dp[3][5] = 6the meaning is: for a given series of items, if only the first 3 items are selected, when the backpack capacity is 5, the maximum value that can be loaded is 6.
      *
      *
      * The third step is to think about the logic of state transition based on "choice" .
-     * To put it simply, how do you use the code to express "put items iinto backpack" and "not put items iinto the backpack" in the pseudo-code above?
+     * To put it simply, how do you use the code to express "put items i into backpack" and "not put items i into the backpack" in the pseudo-code above?
      * This is combined with the definition of the dp array to see how these two choices affect the state:
      * If you don't pack i this knapsack , then obviously, the maximum value dp[i][w]should be equal to dp[i-1][w], inheriting the previous result.
      *
@@ -55,6 +55,21 @@ public class main {
                 System.out.printf(" %d ", dp[i][j]);
             }
             System.out.printf("\n");
+        }
+        return dp[N][W];
+    }
+
+    int bag(int W, int N, int[] wt, int[] val) {
+        int[][] dp = new int[N + 1][W + 1];
+
+        for (int i = 1; i <= N; i++) {
+            for (int j = 1; j <= W; j++) {
+                if (j - wt[i - 1] < 0) {
+                    dp[i][j] = dp[i - 1][j];
+                } else {
+                    dp[i][j] = Math.max(dp[i - 1][j], dp[i - 1][j - wt[i - 1]] + val[i - 1]);
+                }
+            }
         }
         return dp[N][W];
     }

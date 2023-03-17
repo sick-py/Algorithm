@@ -2,7 +2,6 @@ public class MinHeap {
     /**
      * A min-Heap is a complete binary tree in which the value in each internal node is smaller than or equal to the values in the children of that node. Mapping the elements of a heap into an array is trivial: if a node is stored an index k, then its left child is stored at index 2k + 1 and its right child at index 2k + 2.
      *
-     *
      * */
     public int[] heap;
     public int size;
@@ -12,6 +11,15 @@ public class MinHeap {
         heap = new int[a];
         capacity = a;
         size = 0;
+    }
+
+    public MinHeap(int[] nums) {
+        int n = nums.length;
+        heap = new int[n];
+        size = n;
+        for (int i = n / 2; i >= 0; i--) {
+            heapify(i);
+        }
     }
 
     private void swap(int f, int s) {
@@ -62,6 +70,7 @@ public class MinHeap {
         int popped = heap[0];
         heap[0] = heap[--size];
         heapify(0);
+        size--;
         return popped;
     }
 
