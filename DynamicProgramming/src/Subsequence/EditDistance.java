@@ -1,16 +1,18 @@
 package Subsequence;
 
+import java.util.Arrays;
+
 public class EditDistance {
     /**
-     * The edit distance problem is to give us two strings s1and s2, only three operations can be used, let us s1change s2to find the least number of operations. It needs to be clear that whether it is s1changed s2or vice versa, the result is the same, so the following will be s1changed into s2an example.
+     * The edit distance problem is to give us two strings s1 and s2, only three operations can be used, let us s1change s2to find the least number of operations. It needs to be clear that whether it is s1changed s2or vice versa, the result is the same, so the following will be s1changed into s2an example.
      *
-     * o solve the dynamic programming problem of two strings, two pointers i, jare to point to the end of the two strings, and then move forward step by step to reduce the scale of the problem .
+     * to solve the dynamic programming problem of two strings, two pointers i, j are to point to the end of the two strings, and then move forward step by step to reduce the scale of the problem .
      * According to the above GIF, it can be found that there are not only three operations, but there is actually a fourth operation, which is to do nothing (skip). For example in this case:
      *
      * There is another situation that is easy to handle, that jis s2, when is finished, if has inot finished s1, then only the delete operation can be used to s1shorten to s2. For example in this case:
-     * Similarly, iif you haven'ts1 finished walking when you finish walking , you can only use the insert operation to insert all the remaining characters . As we will see later, these two cases are the base cases of the algorithm
+     * Similarly, i if you haven't s1 finished walking when you finish walking , you can only use the insert operation to insert all the remaining characters . As we will see later, these two cases are the base cases of the algorithm
      *
-     * The base case is ifinished s1or jfinished s2, which can directly return the remaining length of another string.
+     * The base case is i finished s1 or j finished s2, which can directly return the remaining length of another string.
      * For each pair of characters s1[i]and s2[j], four operations are possible:
      *
      * if s1[i] == s2[j]:
@@ -132,6 +134,38 @@ public class EditDistance {
      By repeating this process, you can go back to the starting point step by step dp[0][0], forming a path, and editing according to the operations on this path is the best solution.
 
      * */
+
+    class review {
+        int[][] memory;
+        int Edit(String s1, String s2) {
+            int m = s1.length(), n = s2.length();
+            memory = new int[m][n];
+            Arrays.fill(memory, -1);
+            return dp(s1, m - 1, s2, n - 1);
+        }
+        int dp(String s1, int i, String s2, int j) {
+            if (i == -1) {
+                return j + 1;
+            }
+            if (j == -1) {
+                return i + 1;
+            }
+
+            if (memory[i][j] != -1) {
+                return memory[i][j];
+            }
+
+            if (s1.charAt(i) == s2.charAt(j)) {
+                memory[i][j] = dp(s1, i - 1, s2, j - 1);
+            } else {
+                memory[i][j] = min(dp(s1, i, s2, j - 1),
+                        dp(s1, i - 1, s2, j),
+                        dp(s1, i - 1, s2, j - 1)) + 1;
+            }
+
+            return memo[i][j];
+        }
+    }
 
 
 }

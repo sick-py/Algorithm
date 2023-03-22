@@ -5,7 +5,7 @@ import java.util.Arrays;
 public class LongestCommonSubsequence {
     /** refine a big problem to a point, and use recursion/iteration extend to whole problem
      *
-     *  don’t know how you feel about doing algorithmic questions. I have concluded that the skill of doing algorithmic questions is to refine the big problem to a point, first study how to solve the problem on this small point, and then use recursion/iteration extended to the whole problem .
+     *  don’t know how you feel about doing algorithmic questions. I have concluded that the skill of doing algorithmic questions is to refine the big problem to a point, first study how to solve the problem on this small point, and then use recursion/iteration extended to the whole problem.
      *
      * For example, our previous article Take you hand in hand to brush the third phase of the binary tree, To solve the problem of the binary tree, we will refine the whole problem to a certain node, imagine ourselves standing on a certain node, what needs to be done, and then set the binary tree recursive framework.
      *
@@ -13,8 +13,8 @@ public class LongestCommonSubsequence {
      * */
 
     /**
-     * Give you two strings s1and s2, please find the longest common subsequence between them, and return the length of this subsequence. The function signature is as follows:
-     * The definition of this dp function is dp(s1, i, s2, j)to s1[i..]calculate s2[j..]the length of the longest common subsequence.
+     * Give you two strings s1 and s2, please find the longest common subsequence between them, and return the length of this subsequence. The function signature is as follows:
+     * The definition of this dp function is dp(s1, i, s2, j) to s1[i..]calculate s2[j..]the length of the longest common subsequence.
      *
      * According to this definition, the answer we want is dp(s1, 0, s2, 0), and the base case is i == len(s1)or j == len(s2), because at this time s1[i..]or s2[j..]is equivalent to an empty string, and the length of the longest common subsequence is obviously 0:
      *
@@ -23,6 +23,9 @@ public class LongestCommonSubsequence {
      * s1[i] != s2[j]what should I do if it happens?
      * s1[i] != s2[j]means, s1[i]and s2[j]have at least one character that is not lcsin :
      * */
+
+
+
     int[][] memo;
 
     int longestCommon(String s1, String s2) {
@@ -57,6 +60,31 @@ public class LongestCommonSubsequence {
     }
     int max(int a, int b, int c) {
         return Math.max(a, Math.max(b, c));
+    }
+
+    /**
+     * dp[i][j] the length of LCS of s1(0 .. i) and s2(0 .. j)
+     *
+     * */
+    public int longestCommonSubsequence(String text1, String text2) {
+        int n1 = text1.length(), n2 = text2.length();
+        int[][] dp = new int[n1 + 1][n2 + 1];
+        for (int i = 1; i <= n1; i++) {
+            for (int j = 1; j <= n2; j++) {
+                if (text1.charAt(i - 1) == text2.charAt(j - 1)) {
+                    dp[i][j] = dp[i - 1][j - 1] + 1;
+                } else {
+                    dp[i][j] = Math.max(dp[i - 1][j], dp[i][j - 1]);
+                }
+            }
+        }
+        for (int i = 0; i <= n1; i++) {
+            for (int j = 0; j <= n2; j++) {
+                System.out.printf(" %d ", dp[i][j]);
+            }
+            System.out.printf("\n");
+        }
+        return dp[n1][n2];
     }
 
     /** String delete operation

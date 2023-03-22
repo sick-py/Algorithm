@@ -7,7 +7,7 @@ public class main {
      *
      * Generally speaking, this kind of question asks you to find the longest subsequence , because the shortest subsequence is just one character, there is nothing to ask. Once the subsequence and the most value are involved, it is almost certain that the dynamic programming technique is examined, and the time complexity is generally O(n^2) .
      * The reason is simple, if you think about a string, how many possible subsequences are there? At least it is exponential. In this case, without dynamic programming skills, what else do you want?
-     * Since dynamic programming is to be used, it is necessary to define dpan array and find the state transition relationship. The two thinking templates we are talking about are the definition thinking of dparrays . Different problems may require different dparray definitions to solve.
+     * Since dynamic programming is to be used, it is necessary to define dp an array and find the state transition relationship. The two thinking templates we are talking about are the definition thinking of dp arrays . Different problems may require different dparray definitions to solve.
      */
 
     /** one-dimensional dp array:
@@ -40,14 +40,14 @@ public class main {
      * This kind of thinking is used relatively more, especially when it involves subsequences of two strings/arrays, such as the longest common subsequence and edit distance mentioned above ; this kind of thinking can also be used when only one string/array is involved scenarios, such as the palindrome subsequence problem discussed in this article.
      * */
 
-    /** 2.1 For scenarios involving two strings/arrays , dpthe definition of the array is as follows:
+    /** 2.1 For scenarios involving two strings/arrays , the definition of the dp array is as follows:
      In subarray arr1[0..i]and subarray arr2[0..j], the length of the subsequence we require isdp[i][j] .
      2.2 For scenarios involving only one string/array , dpthe definition of the array is as follows:
-     array[i..j]In the subarraydp[i][j] , the length of the subsequence we require is .
+     In the array[i..j], the length of the subsequence we require is dp[i][j].
 
      * The longest palindromic subsequence
      * Say for input s = "aecda", the algorithm returns 3, because the longest palindromic subsequence is "aca", with a length of 3.
-     * Our definition of the dparray is: In the s[i..j]substringdp[i][j] , the length of the longest palindromic subsequence is . It is important to keep this definition in mind to understand the algorithm.
+     * Our definition of the dparray is: In the s[i..j]substring , the length of the longest palindromic subsequence is dp[i][j]. It is important to keep this definition in mind to understand the algorithm.
      *
      * Say for input s = "aecda", the algorithm returns 3, because the longest palindromic subsequence is "aca", with a length of 3.
      * Our definition of the dparray is: In the s[i..j]substringdp[i][j] , the length of the longest palindromic subsequence is . It is important to keep this definition in mind to understand the algorithm.
@@ -64,7 +64,7 @@ public class main {
      *     dp[i][j] = max(dp[i + 1][j], dp[i][j - 1]);
      * So far, the state transition equation has been written out. According to the definition of the dp array, what we require is the length ofdp[0][n - 1] the entire longest palindrome subsequence.s
      * First, clarify the base case. If there is only one character, obviously the length of the longest palindrome subsequence is 1, that is dp[i][j] = 1 (i == j).
-     * Because imust be less than or equal to j, so for i > jthose positions, there is no subsequence at all, and should be initialized to 0.
+     * Because i must be less than or equal to j, so for i > j those positions, there is no subsequence at all, and should be initialized to 0.
      * In addition, look at the state transition equation just written. If you want to find, you dp[i][j]need to know the three positions dp[i+1][j-1], dp[i+1][j], dp[i][j-1]and then look at the base case we determined. After filling in the dparray like this:
      * In order to ensure each calculation dp[i][j], the position in the left, lower and right directions has been calculated, and can only be traversed obliquely or reversely :
      * */
@@ -90,11 +90,30 @@ public class main {
         return dp[0][n - 1];
     }
 
+    int review(String s) {
+        int n = s.length();
+        int[][] dp = new int[n][n];
+        for (int i = 0; i <= n; i++) {
+            dp[i][i] = 1;
+        }
+
+        for (int i = n - 1; i >= 0; i--) {
+            for (int j = i + 1; j < n; j++) {
+                if (s.charAt(i) == s.charAt(j)) {
+                    dp[i][j] = dp[i + 1][j - 1] + 2;
+                } else {
+                    dp[i][j] = Math.max(dp[i + 1][j], dp[i][j - 1]);
+                }
+            }
+        }
+        return dp[0][n - 1];
+    }
+
     /** For example, Likou question 1312 "Calculate the minimum number of insertions to make a string a palindrome":
 
-     Enter a string s, you can insert any character anywhere in the string. If you want to sturn into a palindrome, please calculate the minimum number of insertions?
+     Enter a string s, you can insert any character anywhere in the string. If you want to s turn into a palindrome, please calculate the minimum number of insertions?
      *
-     * For example, input s = "abcea", the algorithm returns 2, because you can sinsert 2 characters into a palindrome "abeceba"or "aebcbea". If entered s = "aba", the algorithm returns 0, because sis already a palindrome, no need to insert any characters.
+     * For example, input s = "abcea", the algorithm returns 2, because you can insert 2 characters into s to become a palindrome "abeceba"or "aebcbea". If entered s = "aba", the algorithm returns 0, because sis already a palindrome, no need to insert any characters.
      *
      * This is also a subsequence problem of a single string, so we can also use a two-dimensional dparray , where dp[i][j]is defined as follows:
      *
