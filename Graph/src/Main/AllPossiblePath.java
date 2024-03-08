@@ -5,9 +5,9 @@ import java.util.List;
 
 public class AllPossiblePath {
     /**
-     * Title Input a directed acyclic graph , this graph ncontains nodes, labeled as 0, 1, 2,..., n - 1, please calculate all the paths from 0 to n - 1 .
+     * Title Input a directed acyclic graph , this graph contains n nodes, labeled as 0, 1, 2,..., n - 1, please calculate all the paths from 0 to n - 1 .
      *
-     * The input is actually a graph represented by the "adjacency list", which graph[i]stores all the neighbor nodes iof node.
+     * The input is actually a graph represented by the "adjacency list", which graph[i]stores all the neighbor nodes of i node.
      *
      * For example graph = [[1,2],[3],[3],[]], the input represents the following picture:
      * The algorithm should return [[0,1,3],[0,2,3]],

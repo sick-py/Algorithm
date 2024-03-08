@@ -2,8 +2,8 @@ package BFS;
 
 
 import javax.swing.tree.TreeNode;
-import javax.xml.soap.Node;
 import java.util.*;
+import Main.Node;
 
 public class main {
     /**
@@ -34,7 +34,7 @@ public class main {
                     return step;
                 }
                 Node x = cur;
-                //for (Node x : cur.adj()) {
+                //for (Main.Node x : cur.adj()) {
                     if (!visited.contains(x)) { /**
                      the node in the queue is always right, so before adding it, we need to check
                      and offer and add is always together

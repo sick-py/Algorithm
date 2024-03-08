@@ -47,7 +47,7 @@ public class EditDistance {
         );
     }
 
-    int min(int a, int b, int c) {
+    static int min(int a, int b, int c) {
         return Math.min(a, Math.min(b, c));
     }
     /** memo
@@ -86,7 +86,7 @@ public class EditDistance {
      * dpSince dpthe meaning of the array and the recursive function are the same, you can directly apply the previous ideas to write code. The only difference is that the DP table is solved from the bottom up, and the recursive solution is solved from the top down :
      * */
 
-    int minDistance(String s1, String s2) {
+    static int minDistance(String s1, String s2) {
         int m = s1.length(), n = s2.length();
         int[][] dp = new int[m + 1][n + 1];
         // base case
@@ -108,8 +108,20 @@ public class EditDistance {
                 }
             }
         }
+
+        for (int i = 0; i <= m; i++) {
+            for (int j = 0; j <= n; j++) {
+                System.out.printf("%d ", dp[i][j]);
+            }
+            System.out.printf("\n");
+        }
         // 储存着整个 s1 和 s2 的最小编辑距离
         return dp[m][n];
+    }
+
+    public static void main(String[] args) {
+        String s1 = "cats", s2 = "fast";
+        minDistance(s1, s2);
     }
 
     /** how to backtrack the path

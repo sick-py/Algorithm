@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class Graph {
+public class  Graph {
     /**
      * In fact, we rarely use this Vertexclass to implement graphs, but use the adjacency list and adjacency matrix that are often said.
      * */
@@ -29,7 +29,7 @@ public class Graph {
     }
 
     /**
-     * The adjacency matrix is ​​a two-dimensional Boolean array, we call it right matrix, if the node xand yare connected, then matrix[x][y]set as true(represented by the green square in the above figure true). If you want to find xthe , matrix[x][..]just scan around.
+     * The adjacency matrix is ​​a two-dimensional Boolean array, we call it right matrix, if the node x and y are connected, then matrix[x][y]set as true(represented by the green square in the above figure true). If you want to find x the , matrix[x][..]just scan around.
      *
      * So, why are there these two ways of storing graphs? It must be because they each have their own strengths and weaknesses .
      * */
@@ -42,7 +42,7 @@ public class Graph {
      *
      * However, the adjacency list cannot quickly determine whether two nodes are adjacent.
      *
-     * Therefore, which method to use to realize the graph depends on the specific situation.
+     * Therefore, which method to use to implement the graph depends on the specific situation.
      *
      * PS: In conventional algorithm problems, the adjacency list will be used more frequently, mainly because it is simpler to operate, but this does not mean that the adjacency matrix should be underestimated. Matrix is ​​a powerful mathematical tool, and some hidden properties of graphs can be revealed with the help of subtle matrix operations. However, this article is not going to introduce mathematical content, so interested readers can search and learn by themselves.
      * */
@@ -64,13 +64,13 @@ public class Graph {
     /** Traverse the graph
      * various data structures were invented for nothing more than traversal and access, so "traversal" is the basis of all data structures .
      *
-     * The biggest difference between a graph and a multi-fork tree is that a graph may contain loops. If you start traversing from a certain node in the graph, you may walk around and return to this node, but this does not happen in a tree. Starting from a node must go to the leaf node, and it is absolutely impossible to return to itself.
+     * The biggest difference between a graph and a multi-fork tree is that a graph may contain circle. If you start traversing from a certain node in the graph, you may walk around and return to this node, but this does not happen in a tree. Starting from a node must go to the leaf node, and it is absolutely impossible to return to itself.
      *
-     * So, if the graph contains cycles, the traversal frame is assisted by an visited array :
+     * So, if the graph contains cycles, the traversal frame is assisted by a visited array :
      *
-     * The nodes marked as true in are represented in gray, and the nodes onPathmarked as true in are represented in green . It is analogous to the snake game, visited recording the grids the snake has passed, while onPathonly recording snake body. In the traversal process of the graph, it onPathis used to judge whether it is a loop. It is analogous to the scene when a greedy snake bites itself (forms a loop). Now you can understand the difference between the two.
+     * The nodes marked as true in are represented in gray, and the nodes onPath marked as true in are represented in green . It is analogous to the snake game, visited recording the grids the snake has passed, while onPath only recording snake body. In the traversal process of the graph, it onPathis used to judge whether it is a loop. It is analogous to the scene when a greedy snake bites itself (forms a loop). Now you can understand the difference between the two.
      *
-     * If you are asked to deal with path-related issues, this onPathvariable will definitely be used, such astopological sortThere is use in it.
+     * If you are asked to deal with path-related issues, this onPathvariable will definitely be used, such as topological sortThere is use in it.
      *
      */
     boolean[] visited;

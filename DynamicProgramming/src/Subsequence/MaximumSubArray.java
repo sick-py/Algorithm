@@ -12,7 +12,7 @@ public class MaximumSubArray {
      * because there is negative number, so it's not direct to answer these questions
      *
      * define:
-     * nums[0..i]The "largest subarray sum" in isdp[i] .
+     * nums[0..i]The "largest subarray sum" in is dp[i] .
      *
      * If defined in this way, the "maximum subarray sum" of the entire numsarray is dp[n-1]. How to find the state transition equation? According to the method of mathematical induction, assuming we know it dp[i-1], how to derive dp[i]it ?
      * So in the above situation, using mathematical induction, can you use dp[i]to deduce dp[i+1]?
@@ -30,6 +30,21 @@ public class MaximumSubArray {
         for (int i = 1; i < n; i++) {
             dp[i] = Math.max(nums[i], dp[i - 1] + nums[i]);
         }
+        int res = Integer.MIN_VALUE;
+        for (int i = 0; i < n; i++) {
+            res = Math.max(res, dp[i]);
+        }
+        return res;
+    }
+
+    int max(int[] nums) {
+        int n = nums.length;
+        int[] dp = new int[n];
+        dp[0] = Math.max(0, nums[0]);
+        for (int i = 1; i < n; i++) {
+            dp[i] = Math.max(dp[i - 1] + nums[i], nums[i]);
+        }
+
         int res = Integer.MIN_VALUE;
         for (int i = 0; i < n; i++) {
             res = Math.max(res, dp[i]);

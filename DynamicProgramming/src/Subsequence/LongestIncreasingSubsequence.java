@@ -39,6 +39,26 @@ public class LongestIncreasingSubsequence {
         return res;
     }
 
+    class review {
+        int Longest(int[] nums) {
+            int n = nums.length;
+            int[] dp = new int[n];
+            Arrays.fill(dp, 1); //here
+            for (int i = 1; i < n; i++) {
+                for (int j = 0; j < i; j++) {
+                    if (nums[j] < nums[i]) {
+                        dp[i] = Math.max(dp[i], dp[j] + 1);
+                    }
+                }
+            }
+
+            int res = 0;
+            for (int i = 0; i < n; i++) {
+                res = Math.max(dp[i], res);
+            }
+            return res;
+        }
+    }
     /** expand to two dimensions  Matryoshka envelope problem
      * give you a 2 dimensions envelopes, envelops[i] = [wi, hi] indicate the width and height of the envelope, at max how many envelopes can put together
      *

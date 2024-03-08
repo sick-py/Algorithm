@@ -1,5 +1,6 @@
 package Main;
 
+import java.sql.Struct;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.LinkedList;
@@ -13,7 +14,7 @@ public class CourseSchedule {
      *
      * When seeing the dependency problem, the first thing that comes to mind is to transform the problem into a data structure like a "directed graph". As long as there is a cycle in the graph, it means that there is a circular dependency
      * For example, you must complete the course 1before you can take the course 3, then there is a 1directed edge pointing 3.
-     * So we can generate a picture like this based on prerequisitesthe array :
+     * So we can generate a picture like this based on prerequisites the array :
      *
      * If it is found that there is a cycle in this directed graph, it means that there is a circular dependency between the courses, and there must be no way to complete all the courses; on the contrary, if there is no cycle, then all the courses must be completed .
      * Well, if we want to solve this problem, first we need to convert the input of the topic into a directed graph, and then judge whether there is a cycle in the graph.
@@ -31,6 +32,7 @@ public class CourseSchedule {
         }
         return graph;
     }
+
 
     /**
      * Note that not all nodes in the graph are connected, so use a for loop to use all nodes as the starting point to call the DFS search algorithm once.
@@ -56,6 +58,7 @@ public class CourseSchedule {
         }
         onPath[s] = false;
     }
+
 
     public boolean canFinish(int numCourses, int[][] prerequisites) {
         List<Integer>[] graph = buildGraph(numCourses, prerequisites);

@@ -20,6 +20,7 @@ public class IterativeInOrder {
      * Pop the top stack element and point the current node to the right child of the popped element.
      * If the current node is null and the stack is empty, we terminate our algorithm. Let’s run the above algorithm on a sample tree.
      * */
+
     void iterative(TreeNode root) {
         if (root == null) {
             return;
